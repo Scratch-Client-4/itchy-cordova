@@ -27,6 +27,7 @@ a {
   width: 100%;
   box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
   text-align: center;
+  z-index: 1;
 
   .home-button {
     img {
@@ -51,8 +52,29 @@ a {
   }
 }
 
+.greeter {
+  margin-left: 6vw;
+  margin-right: 6vw;
+  margin-top: 30px;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  font-size: 4em;
+}
+
+.yours {
+  margin-bottom: 15vh !important;
+}
+
+.featured {
+  height: fit-content !important;
+}
+
+.now {
+  height: 40vh !important;
+}
+
 .grid {
-  margin-top: 10%;
+  margin-top: 20px;
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 2;
@@ -66,14 +88,28 @@ a {
     width: 88vw;
     height: 500px;
     background-color: #292929;
-    overflow-x: scroll;
     margin-bottom: 50px;
+    overflow-x: hidden;
 
     .gridbox-header {
       font-family: 'Inter', sans-serif;
       font-size: 3em;
       color: white;
       padding: 20px;
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+
+    .featured-projects {
+      display: inline-flex;
+      overflow-x: scroll;
+      width: 88vw;
+
+      .featured-project-img {
+        padding: 35px;
+        border-radius: 50px;
+      }
     }
   }
 }

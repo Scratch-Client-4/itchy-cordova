@@ -1,5 +1,12 @@
 {
   "devDependencies": {
     "sass": "^1.26.3"
+  },
+  "dependencies": {
+    "human-readable-time": "^0.3.0",
+    "vue": "^2.6.11"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
   }
 }
