@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body {
+  background-color: #1A1A1A;
+  overflow: hidden;
+}
+
+a {
+  color: white;
+}
+
+.main {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.huge {
+  font-size: 4em !important;
+}
+
+.nav {
+  background-color: #292929;
+  height: 150px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  text-align: center;
+
+  .home-button {
+    img {
+      height: 200px;
+      width: auto;
+      transform: translateY(-70px);
+    }
+  }
+
+  .icon-mail {
+    position: absolute;
+    bottom: 42px;
+    left: 60px;
+    font-size: 65px !important;
+  }
+
+  .icon-user {
+    position: absolute;
+    bottom: 42px;
+    right: 60px;
+    font-size: 65px !important;
+  }
+}
+
+.grid {
+  margin-top: 10%;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 2;
+  justify-content: center;
+  align-content: center;
+  overflow-y: scroll;
+
+  .gridbox {
+    box-shadow: 0 0 50px rgba(0,0,0,0.7);
+    border-radius: 10px;
+    width: 88vw;
+    height: 500px;
+    background-color: #292929;
+    overflow-x: scroll;
+    margin-bottom: 50px;
+
+    .gridbox-header {
+      font-family: 'Inter', sans-serif;
+      font-size: 3em;
+      color: white;
+      padding: 20px;
+    }
+  }
+}
