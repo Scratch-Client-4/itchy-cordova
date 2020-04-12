@@ -7,6 +7,7 @@ body {
 
 a {
   color: white;
+  text-decoration: none;
 }
 
 .main {
@@ -59,18 +60,21 @@ a {
   font-family: 'Inter', sans-serif;
   color: white;
   font-size: 4em;
+  text-align: center;
 }
 
 .yours {
   margin-bottom: 15vh !important;
 }
 
-.featured {
+.featured,
+.top-loved {
   height: fit-content !important;
 }
 
 .now {
   height: 40vh !important;
+  display: none;
 }
 
 .grid {
@@ -91,6 +95,15 @@ a {
     margin-bottom: 50px;
     overflow-x: hidden;
 
+    .offline-img {
+      height: 90%;
+      width: auto;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-30px);
+    }
+
     .gridbox-header {
       font-family: 'Inter', sans-serif;
       font-size: 3em;
@@ -101,15 +114,24 @@ a {
       left: 0;
     }
 
-    .featured-projects {
+    .overlay {
+      font-size: 1.75em;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .project-row {
       display: inline-flex;
       overflow-x: scroll;
       width: 88vw;
+    }
 
-      .featured-project-img {
-        padding: 35px;
-        border-radius: 50px;
-      }
+    .project-thumb {
+      padding: 35px 35px 25px;
+    }
+
+    .project-img {
+      border-radius: 20px;
+      height: 25vh;
     }
   }
 }

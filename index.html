@@ -16,28 +16,43 @@
       <div class="home-button">
         <a href="#"><img src="/asset/home.svg"></a>
       </div>
-      <a href="#"><i class="feather icon-user"></i></a>
+      <a href="javascript:userInfo();"><i class="feather icon-user"></i></a>
     </div>
-    <h1 class="greeter" id="hello">Hello {{ username }}, it's {{ day }}.</h1>
+    <h1 class="greeter" id="hello">Hello {{ username }},<br> it's {{ day }}.</h1>
     <div class="grid">
       <div class="gridbox now">
         <h1 class="gridbox-header huge">Now</h1>
       </div>
       <div class="gridbox featured">
-        <h1 class="gridbox-header">Popular</h1>
-        <div class="featured-projects" id="featured">
-          <div v-for="project in featured" :alt="project[1]">
-            <a :href="'javascript: selectedLink = ' + project[2] + '; openProject();'"><img :src="project[0]" class="featured-project-img"></a>
+        <h1 class="gridbox-header">Featured</h1>
+        <div class="project-row" id="featured">
+          <div v-for="project in featured" :alt="project[1]" class="project-thumb">
+            <a :href="'javascript: selectedLink = ' + project[2] + '; openProject();'"><img :src="project[0]" class="project-img">
+              <div class="overlay">{{ project[1][0] }}</div>
+            </a>
           </div>
 
         </div>
       </div>
       <div class="gridbox top-loved">
         <h1 class="gridbox-header">Top Loved</h1>
+        <div class="project-row" id="toploved">
+          <div v-for="project in toploved" :alt="project[1]" class="project-thumb">
+            <a :href="'javascript: selectedLink = ' + project[2] + '; openProject();'"><img :src="project[0]" class="project-img">
+              <div class="overlay">{{ project[1][0] }}</div>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="gridbox yours">
-        <h1 class="gridbox-header">Your Projects</h1>
+        <h1 class="gridbox-header"></h1>
+        <div class="project-row" id="forYou">
+          <img src="/asset/cantaccess.svg" class="offline-img">
+        </div>
       </div>
+    </div>
+    <div class="user-shade" id="userShade">
+      <h1 class=""></h1>
     </div>
   </div>
 
