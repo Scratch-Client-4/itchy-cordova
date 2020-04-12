@@ -48,7 +48,7 @@ fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/proxy/featured?li
     featuredRaw = data;
     for (let i = 0; i < 6; i++) {
       featuredParsed.push([
-        [featuredRaw["community_featured_projects"][i]['thumbnail_url']],
+        ["https:" + featuredRaw["community_featured_projects"][i]['thumbnail_url']],
         [featuredRaw["community_featured_projects"][i]['title']],
         [featuredRaw["community_featured_projects"][i]['id']]
       ]);
@@ -63,7 +63,7 @@ fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/proxy/featured?li
     });
     for (let i = 0; i < 6; i++) {
       lovedParsed.push([
-        [featuredRaw["community_most_loved_projects"][i]['thumbnail_url']],
+        ["https:" + featuredRaw["community_most_loved_projects"][i]['thumbnail_url']],
         [featuredRaw["community_most_loved_projects"][i]['title']],
         [featuredRaw["community_most_loved_projects"][i]['id']]
       ]);

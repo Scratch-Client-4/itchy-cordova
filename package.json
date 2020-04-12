@@ -1,8 +1,11 @@
 {
   "devDependencies": {
+    "cssnano": "^4.1.10",
     "sass": "^1.26.3"
   },
   "dependencies": {
+    "cordova": "^9.0.0",
+    "cordova-parcel-template": "^1.0.0",
     "human-readable-time": "^0.3.0",
     "vue": "^2.6.11"
   },

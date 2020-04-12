@@ -13,16 +13,31 @@ a {
 .main {
   height: 100vh;
   overflow-y: scroll;
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .huge {
-  font-size: 4em !important;
+  font-size: 3em !important;
+}
+
+.home-button {
+  img {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    height: 11vh;
+    width: auto;
+    transform: translateX(-50%);
+  }
 }
 
 .nav {
   background-color: #292929;
-  height: 150px;
-  position: absolute;
+  height: 7vh;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -30,36 +45,28 @@ a {
   text-align: center;
   z-index: 1;
 
-  .home-button {
-    img {
-      height: 200px;
-      width: auto;
-      transform: translateY(-70px);
-    }
-  }
-
   .icon-mail {
     position: absolute;
-    bottom: 42px;
-    left: 60px;
-    font-size: 65px !important;
+    bottom: 8.5px;
+    left: 30px;
+    font-size: 1.5em !important;
   }
 
   .icon-user {
     position: absolute;
-    bottom: 42px;
-    right: 60px;
-    font-size: 65px !important;
+    bottom: 8.5px;
+    right: 30px;
+    font-size: 1.5em !important;
   }
 }
 
 .greeter {
   margin-left: 6vw;
   margin-right: 6vw;
-  margin-top: 30px;
+  margin-top: 45px;
   font-family: 'Inter', sans-serif;
   color: white;
-  font-size: 4em;
+  font-size: 1.6em;
   text-align: center;
 }
 
@@ -88,34 +95,33 @@ a {
 
   .gridbox {
     box-shadow: 0 0 50px rgba(0,0,0,0.7);
-    border-radius: 10px;
+    border-radius: 6px;
     width: 88vw;
-    height: 500px;
     background-color: #292929;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     overflow-x: hidden;
 
     .offline-img {
-      height: 90%;
+      height: 20vh;
       width: auto;
       position: relative;
       top: 50%;
       left: 50%;
-      transform: translateX(-50%) translateY(-30px);
+      transform: translateX(-50%);
     }
 
     .gridbox-header {
       font-family: 'Inter', sans-serif;
-      font-size: 3em;
+      font-size: 1em;
       color: white;
-      padding: 20px;
+      padding: 10px;
       position: relative;
       top: 0;
       left: 0;
     }
 
     .overlay {
-      font-size: 1.75em;
+      font-size: 0.7em;
       font-family: 'Inter', sans-serif;
     }
 
@@ -126,12 +132,12 @@ a {
     }
 
     .project-thumb {
-      padding: 35px 35px 25px;
+      padding: 15px;
     }
 
     .project-img {
-      border-radius: 20px;
-      height: 25vh;
+      border-radius: 5px;
+      height: 19vh;
     }
   }
 }
