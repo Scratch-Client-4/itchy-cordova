@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
+:root {
+  --bg-primary: #1A1A1A;
+  --bg-secondary: #292929;
+  --text-primary: white;
+}
+
 body {
-  background-color: #1A1A1A;
+  background-color: var(--bg-primary);
   overflow: hidden;
 }
 
 a {
-  color: white;
+  color: var(--text-primary);
   text-decoration: none;
 }
 
@@ -35,7 +41,7 @@ a {
 }
 
 .nav {
-  background-color: #292929;
+  background-color: var(--bg-secondary);
   height: 7vh;
   position: fixed;
   left: 0;
@@ -65,7 +71,7 @@ a {
   margin-right: 6vw;
   margin-top: 45px;
   font-family: 'Inter', sans-serif;
-  color: white;
+  color: var(--text-primary);
   font-size: 1.6em;
   text-align: center;
 }
@@ -97,7 +103,7 @@ a {
     box-shadow: 0 0 50px rgba(0,0,0,0.7);
     border-radius: 6px;
     width: 88vw;
-    background-color: #292929;
+    background-color: var(--bg-secondary);
     margin-bottom: 25px;
     overflow-x: hidden;
 
@@ -113,7 +119,7 @@ a {
     .gridbox-header {
       font-family: 'Inter', sans-serif;
       font-size: 1em;
-      color: white;
+      color: var(--text-primary);
       padding: 10px;
       position: relative;
       top: 0;
@@ -140,4 +146,62 @@ a {
       height: 19vh;
     }
   }
+}
+
+.user-shade {
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-primary);
+
+  .user-title {
+    padding-top: 6vw;
+    padding-left: 6vw;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .username-input {
+    margin-top: 2vw;
+    margin-left: 6vw;
+    outline: none;
+    font-size: 1.2em;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    width: 88%;
+    margin-right: 6vw;
+  }
+
+  .para {
+    margin-top: 2vw;
+    margin-left: 6vw;
+    font-size: 1.1em;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .bigbtn {
+    margin-left: 6vw;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    color: var(--bg-primary);
+    padding: 15px;
+    background-color: var(--text-primary);
+    border-radius: 5px;
+  }
+}
+
+.closed-window {
+  top: 100vh;
+  transition: 0.5s;
+}
+
+.opened-window {
+  top: 0;
+  transition: 0.5s;
 }

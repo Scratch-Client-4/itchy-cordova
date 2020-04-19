@@ -14,9 +14,9 @@
     <div class="nav">
       <a href="#"><i class="feather icon-mail"></i></a>
       <div class="home-button">
-        <a href="#"><img src="./asset/home.svg"></a>
+        <a href="#" id="homeBtn"><img src="./asset/home.svg"></a>
       </div>
-      <a href="javascript:userInfo();"><i class="feather icon-user"></i></a>
+      <a href="#" id="userIcon"><i class="feather icon-user"></i></a>
     </div>
     <h1 class="greeter" id="hello">Hello {{ username }},<br> it's {{ day }}.</h1>
     <div class="grid">
@@ -44,6 +44,17 @@
           </div>
         </div>
       </div>
+      <!--
+      <div class="gridbox favorites">
+        <h1 class="gridbox-header">Your Favorites</h1>
+        <div class="project-row" id="favorites">
+          <div v-for="project in favorites" :alt="project[1]" class="project-thumb">
+            <a :href="'javascript: selectedLink = ' + project[2] + '; openProject();'"><img :src="project[0]" class="project-img">
+              <div class="overlay">{{ project[1][0] }}</div>
+            </a>
+          </div>
+        </div>
+      </div> -->
       <div class="gridbox yours">
         <h1 class="gridbox-header"></h1>
         <div class="project-row" id="forYou">
@@ -51,8 +62,11 @@
         </div>
       </div>
     </div>
-    <div class="user-shade" id="userShade">
-      <h1 class=""></h1>
+    <div class="user-shade closed-window" id="userShade">
+      <h1 class="user-title">User Info</h1>
+      <input class="username-input" type="text" id="usrNm" placeholder="type your Scratch username here">
+      <p class="para" id="svCode"></p><br><br>
+      <a class="bigbtn" id="svVerifyBtn" href="#">Verify</a>
     </div>
   </div>
 
