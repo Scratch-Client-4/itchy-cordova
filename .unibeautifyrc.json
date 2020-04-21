@@ -1,0 +1,66 @@
+{
+  "CSS": {
+    "beautifiers": [
+      "Prettier",
+      "Pretty Diff",
+      "JS-Beautify"
+    ],
+    "indent_comments": true
+  },
+  "HTML": {
+    "beautifiers": [
+      "Pretty Diff",
+      "JS-Beautify"
+    ],
+    "indent_comments": true,
+    "indent_inner_html": true
+  },
+  "SCSS": {
+    "beautifiers": [
+      "Prettier",
+      "Pretty Diff"
+    ],
+    "indent_comments": true
+  },
+  "SVG": {
+    "beautifiers": [
+      "Pretty Diff"
+    ],
+    "indent_comments": true
+  },
+  "Sass": {
+    "beautifiers": [
+      "Pretty Diff"
+    ],
+    "indent_comments": true
+  },
+  "XML": {
+    "beautifiers": [
+      "Pretty Diff",
+      "JS-Beautify"
+    ],
+    "indent_comments": true
+  },
+  "Vue": {
+    "beautifiers": [
+      "Prettier"
+    ]
+  },
+  "JavaScript": {
+    "beautifiers": [
+      "Prettier",
+      "Pretty Diff",
+      "JS-Beautify",
+      "ESLint"
+    ],
+    "indent_comments": true
+  },
+  "JSON": {
+    "beautifiers": [
+      "Prettier",
+      "Pretty Diff",
+      "JS-Beautify"
+    ],
+    "indent_comments": true
+  }
+}
