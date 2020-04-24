@@ -148,6 +148,7 @@ a {
   }
 }
 
+.project-shade,
 .user-shade {
   position: fixed;
   left: 0;
@@ -155,11 +156,18 @@ a {
   width: 100vw;
   background-color: var(--bg-primary);
 
+  .project-title,
   .user-title {
     padding-top: 6vw;
     padding-left: 6vw;
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
+  }
+
+  .desc {
+    font-family: 'Inter', sans-serif;
+    color: white;
+    padding-left: 6vw;
   }
 
   .username-input {

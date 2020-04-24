@@ -1,4 +1,9 @@
 {
+  "scripts" : {
+    "start": "parcel index.html --global index",
+    "dev": "parcel index.html --global index",
+    "build": "parcel build index.html --global index"
+  },
   "devDependencies": {
     "cssnano": "^4.1.10",
     "sass": "^1.26.3"

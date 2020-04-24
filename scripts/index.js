@@ -14,10 +14,36 @@ let currentUser = "";
 let userData, userId;
 let favsOffset = 0;
 let userShadeOpened = false;
+let projectOpened = false;
 let svStep = 1;
 let svAttempt = "";
 let svId = "41216777",
   svToken = "31f712f43e78bf5570a7da7f66d59e49897ee7ffb9e6bea5f9a8c080dc570ec9";
+
+// define functions
+module.exports.openProject = function openProject(projectId) {
+  console.log("Opening project...");
+  projectOpened = true;
+  document.getElementById("projectShade").classList.replace("closed-window", "opened-window");
+  fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/projects/' + projectId)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      userData = data;
+      let project = new Vue({
+        el: '#projectShade',
+        data: {
+          projectName: data["title"],
+          url: "https://forkphorus.github.io/app.html?id=" + projectId,
+          description: data["description"],
+          creator: data["author"],
+          width: window.innerWidth,
+          height: window.innerWidth * 0.75
+        }
+      });
+    });
+}
 
 if ((!localStorage.getItem("user")) || localStorage.getItem("user") == "user") {
   currentUser = "user";
@@ -45,16 +71,16 @@ if ((!localStorage.getItem("user")) || localStorage.getItem("user") == "user") {
       });
     });
 }
-// define functions
-function openProject() {
-  window.location.replace("https://forkphorus.github.io/app.html?id=" + selectedLink);
-}
 
 document.getElementById("homeBtn").addEventListener("click", function() {
+  if (projectOpened) {
+    document.getElementById('projectFrame').src = "#";
+  }
   if (userShadeOpened) {
     document.getElementById("userShade").classList.replace("opened-window", "closed-window");
     userShadeOpened = false;
   }
+  document.getElementById("projectShade").classList.replace("opened-window", "closed-window");
 })
 
 document.getElementById("userIcon").addEventListener("click", function() {
