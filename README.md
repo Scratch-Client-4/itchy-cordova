@@ -20,7 +20,7 @@ npm -v && parcel -V
 ```
 You should see two version numbers appear.  Then run the build script:
 ```bash
-npm build
+npm run-script build
 ```
 It'll build you the runnable source files (HTML, CSS, and JavaScript) in a new directory called `dist`.  Now move into  dist and compress the files into a zip:
 ```bash

@@ -38,7 +38,7 @@
         <h1 class="gridbox-header">Top Loved</h1>
         <div class="project-row" id="toploved">
           <div v-for="project in toploved" :alt="project[1]" class="project-thumb">
-            <a :href="'javascript: selectedLink = ' + project[2] + '; openProject();'"><img :src="project[0]" class="project-img">
+            <a :href="'javascript: index.openProject(' + project[2] + ');'"><img :src="project[0]" class="project-img">
               <div class="overlay">{{ project[1][0] }}</div>
             </a>
           </div>
@@ -72,7 +72,7 @@
     <!-- User Info window ends here and project window starts -->
     <div class="project-shade closed-window" id="projectShade">
       <h1 class="project-title">{{ projectName }}</h1>
-      <iframe id="projectFrame" :src="url" :width="width" :height="height"></iframe>
+      <iframe id="projectFrame" src="#" :width="width" :height="height"></iframe>
       <br>
       <span class="user"></span>
       <p class="desc">{{ description }}</p>

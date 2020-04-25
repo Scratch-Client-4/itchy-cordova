@@ -13,6 +13,7 @@ let selectedLink = "";
 let currentUser = "";
 let userData, userId;
 let favsOffset = 0;
+let project;
 let userShadeOpened = false;
 let projectOpened = false;
 let svStep = 1;
@@ -30,16 +31,15 @@ module.exports.openProject = function openProject(projectId) {
       return response.json();
     })
     .then((data) => {
-      userData = data;
-      let project = new Vue({
+      document.getElementById("projectFrame").src = "https://forkphorus.github.io/app.html?id=" + projectId;
+      project = new Vue({
         el: '#projectShade',
         data: {
           projectName: data["title"],
-          url: "https://forkphorus.github.io/app.html?id=" + projectId,
           description: data["description"],
           creator: data["author"],
           width: window.innerWidth,
-          height: window.innerWidth * 0.75
+          height: window.innerWidth * 0.73
         }
       });
     });
@@ -74,7 +74,8 @@ if ((!localStorage.getItem("user")) || localStorage.getItem("user") == "user") {
 
 document.getElementById("homeBtn").addEventListener("click", function() {
   if (projectOpened) {
-    document.getElementById('projectFrame').src = "#";
+    project.$destroy();
+    document.getElementById("projectFrame").src = " ";
   }
   if (userShadeOpened) {
     document.getElementById("userShade").classList.replace("opened-window", "closed-window");
