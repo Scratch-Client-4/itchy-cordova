@@ -31,7 +31,7 @@ module.exports.openProject = function openProject(projectId) {
       return response.json();
     })
     .then((data) => {
-      document.getElementById("projectFrame").src = "https://forkphorus.github.io/app.html?id=" + projectId;
+      document.getElementById("projectFrame").src = "https://scratch.mit.edu/projects/" + projectId + "/embed";
       project = new Vue({
         el: '#projectShade',
         data: {
