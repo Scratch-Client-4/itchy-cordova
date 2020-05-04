@@ -155,6 +155,7 @@ a {
   height: 100vh;
   width: 100vw;
   background-color: var(--bg-primary);
+  overflow-y: scroll;
 
   .project-title,
   .user-title {

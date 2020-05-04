@@ -23,7 +23,6 @@ let svId = "41216777",
 
 // define functions
 module.exports.openProject = function openProject(projectId) {
-  console.log("Opening project...");
   projectOpened = true;
   document.getElementById("projectShade").classList.replace("closed-window", "opened-window");
   fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/projects/' + projectId)
@@ -75,6 +74,8 @@ if ((!localStorage.getItem("user")) || localStorage.getItem("user") == "user") {
 document.getElementById("homeBtn").addEventListener("click", function() {
   if (projectOpened) {
     project.$destroy();
+    project.$forceUpdate();
+    project = null;
     document.getElementById("projectFrame").src = " ";
   }
   if (userShadeOpened) {
