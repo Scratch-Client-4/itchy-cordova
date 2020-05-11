@@ -6,7 +6,7 @@ A mobile app for Scratch Client 4 built with Adobe PhoneGap
 [![Join the chat at https://gitter.im/scratchclient4/](https://badges.gitter.im/scratchclient4/mobile.svg)](https://gitter.im/scratchclient4?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Building yourself
-You can easily build this app yourself if you've got a Linux-based computer and an Internet connection!  First, clone the repository:
+You can easily build this app yourself if you've got a computer runnign macOS or Linux and an Internet connection!  First, clone the repository:
 ```bash
 git clone https://github.com/scratch-client-4/mobile
 ```
