@@ -29,4 +29,4 @@ It'll build you the runnable source files (HTML, CSS, and JavaScript) in a new d
 cd dist
 zip dist *
 ```
-After that, go to https://build.phonegap.com and upload the zip as a new application.  You're done!  PhoneGap will start a build and your files will be an app in a few minutes.  If you're building for production you'll also want to use a [config.xml](https://cordova.apache.org/docs/en/latest/config_ref/) file before you zip and upload.
+After that, go to https://build.phonegap.com and upload the zip as a new application.  You're done!  PhoneGap will start a build and your files will be an app in a few minutes.
