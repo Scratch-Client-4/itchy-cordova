@@ -1,5 +1,5 @@
 // declare variables
-let hrt = require('human-readable-time');
+// let hrt = require('human-readable-time');
 import Vue from 'vue';
 let connected = window.navigator.onLine;
 let featuredRaw = "";
@@ -22,6 +22,14 @@ let svId = "41216777",
   svToken = "31f712f43e78bf5570a7da7f66d59e49897ee7ffb9e6bea5f9a8c080dc570ec9";
 
 // define functions
+
+// this function turns a date object into the day's name
+function toDay(dateObject) {
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var d = dateObject;
+  var dayName = days[d.getDay()];
+  return dayName;
+}
 
 // this function opens a project in the shade
 module.exports.openProject = function openProject(projectId) {
@@ -63,7 +71,7 @@ if ((!localStorage.getItem("user")) || localStorage.getItem("user") == "user") {
     data: {
       username: currentUser,
       // get the date to display in readble time (hrt)
-      day: hrt(new Date(), '%day%')
+      day: toDay(new Date())
     }
   });
 } else {
@@ -77,14 +85,14 @@ if ((!localStorage.getItem("user")) || localStorage.getItem("user") == "user") {
     })
     .then((data) => {
       userData = data;
-      let hello = new Vue({
+      /* let hello = new Vue({
         el: '#hello',
         data: {
           username: currentUser,
           // get the date to display in readable time (hrt)
           day: hrt(new Date(), '%day%')
         }
-      });
+      }); */
     });
 }
 
@@ -122,7 +130,7 @@ document.getElementById("userIcon").addEventListener("click", function() {
     document.getElementById("userShade").classList.replace("closed-window", "opened-window");
     // set the user shade status to opened
     userShadeOpened = true;
-  // if the shade is open
+    // if the shade is open
   } else {
     // close the shade with SCSS
     // note: perhaps this is redundant as we already have the home button.  Suggest removing?
@@ -183,7 +191,7 @@ function completeRegistration(username) {
         setTimeout(function() {
           window.location.reload();
         }, 2000);
-      // if the response was not okay, verification failed
+        // if the response was not okay, verification failed
       } else {
         // tell the user to try again.
         document.getElementById('svCode').innerHTML = "Comment the code again.";
@@ -201,7 +209,7 @@ document.getElementById('svVerifyBtn').addEventListener("click", function() {
     startRegistration(svAttempt);
     // go to the next step of registration and wait
     svStep++;
-  // if the user is finishing registration
+    // if the user is finishing registration
   } else {
     // call the completeRegistration function with the username as input
     completeRegistration(svAttempt);
