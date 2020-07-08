@@ -198,7 +198,7 @@ function completeRegistration(username) {
         // if the response was not okay, verification failed
       } else {
         // tell the user to try again.
-        document.getElementById('svCode').innerHTML = "Comment the code again.";
+        document.getElementById('svAdvisory').innerHTML = "Comment the code again.<br>";
       }
     });
 }
