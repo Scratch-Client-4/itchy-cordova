@@ -29,6 +29,10 @@ a {
   font-size: 3em !important;
 }
 
+.inline {
+  display: flex;
+}
+
 .home-button {
   img {
     position: absolute;
@@ -100,7 +104,7 @@ a {
   overflow-y: scroll;
 
   .gridbox {
-    box-shadow: 0 0 50px rgba(0,0,0,0.7);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 6px;
     width: 88vw;
     background-color: var(--bg-secondary);
@@ -156,6 +160,7 @@ a {
   width: 100vw;
   background-color: var(--bg-primary);
   overflow-y: scroll;
+  overflow-x: hidden;
 
   .project-title,
   .user-title {
@@ -202,6 +207,15 @@ a {
     padding: 15px;
     background-color: var(--text-primary);
     border-radius: 5px;
+  }
+
+  #svCopyBtn {
+    display: none;
+    max-width: max-content;
+  }
+
+  #svAdvisory {
+    display: none;
   }
 }
 

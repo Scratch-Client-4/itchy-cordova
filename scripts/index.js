@@ -1,6 +1,7 @@
 // declare variables
 // let hrt = require('human-readable-time');
 import Vue from 'vue';
+import ClipboardJS from 'clipboard';
 let connected = window.navigator.onLine;
 let featuredRaw = "";
 let forYouRaw = "";
@@ -19,7 +20,7 @@ let projectOpened = false;
 let svStep = 1;
 let svAttempt = "";
 let svId = "41216777",
-  svToken = "31f712f43e78bf5570a7da7f66d59e49897ee7ffb9e6bea5f9a8c080dc570ec9";
+  svToken = "65321affe91b322f8adff5fe6f8b2c565840920c10492b03a4886a27da54f485";
 
 // define functions
 
@@ -156,8 +157,11 @@ function startRegistration(username) {
       return response.json();
     })
     .then((data) => {
+      new ClipboardJS('#svCopyBtn');
       // display the scratchverifier code to the user
-      document.getElementById('svCode').innerHTML = data["code"] + "<br><br>Copy the code above and paste it on your profile as a comment.  Then click the Verify button again when the comment has posted.";
+      document.getElementById('svCopyBtn').setAttribute("data-clipboard-text", data["code"]);
+      document.getElementById('svCopyBtn').style.display = "block";
+      document.getElementById('svAdvisory').style.display = "block";
     });
   // clear the input value
   document.getElementById('usrNm').value = "";
@@ -227,7 +231,7 @@ fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/proxy/featured?li
     for (let i = 0; i < 6; i++) {
       featuredParsed.push([
         ["https:" + featuredRaw["community_featured_projects"][i]['thumbnail_url']],
-        [featuredRaw["community_featured_projects"][i]['title']],
+        [featuredRaw["community_featured_projects"][i]['title'].slice(0, 25)],
         [featuredRaw["community_featured_projects"][i]['id']]
       ]);
     }
@@ -242,7 +246,7 @@ fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/proxy/featured?li
     for (let i = 0; i < 6; i++) {
       lovedParsed.push([
         ["https:" + featuredRaw["community_most_loved_projects"][i]['thumbnail_url']],
-        [featuredRaw["community_most_loved_projects"][i]['title']],
+        [featuredRaw["community_most_loved_projects"][i]['title'].slice(0, 25)],
         [featuredRaw["community_most_loved_projects"][i]['id']]
       ]);
     }
