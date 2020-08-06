@@ -1,3 +1,9 @@
+stack/cordova
+.DS_Store
 .cache
-dist
+www
 node_modules
+platforms
+plugins
+dist
+master
