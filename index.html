@@ -5,86 +5,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, width=device-width">
   <title>SC4</title>
-  <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/index.scss">
-  <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_o5hd5vvqpoqiwwmi.css">
+  <link rel="stylesheet" href="styles/new.css">
+  <link rel="stylesheet" href="styles/loader.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div class="main">
-    <div class="nav">
-      <a href="#"><i class="feather icon-mail"></i></a>
-      <div class="home-button">
-        <a href="#" id="homeBtn"><img src="asset/home.svg"></a>
-      </div>
-      <a href="#" id="userIcon"><i class="feather icon-user"></i></a>
+  <div id="app">
+    <div class="top">
+      <h1>Hello there <img src="asset/icon-moon.svg" id="darkModeToggle"></h1>
+      <input type="text" id="searchbox" placeholder="Search for User"></input>
     </div>
-    <h1 class="greeter" id="hello">Hello {{ username }},<br> it's {{ day }}.</h1>
-    <div class="grid">
-      <div class="gridbox now">
-        <h1 class="gridbox-header huge">Now</h1>
-      </div>
-      <div class="gridbox featured">
-        <h1 class="gridbox-header">Featured</h1>
-        <div class="project-row" id="featured">
-          <div v-for="project in featured" :alt="project[1]" class="project-thumb">
-            <a :href="'javascript: index.openProject(' + project[2] + ');'"><img :src="project[0]" class="project-img">
-              <div class="overlay">{{ project[1][0] }}</div>
-            </a>
-          </div>
-
-        </div>
-      </div>
-      <div class="gridbox top-loved">
-        <h1 class="gridbox-header">Top Loved</h1>
-        <div class="project-row" id="toploved">
-          <div v-for="project in toploved" :alt="project[1]" class="project-thumb">
-            <a :href="'javascript: index.openProject(' + project[2] + ');'"><img :src="project[0]" class="project-img">
-              <div class="overlay">{{ project[1][0] }}</div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!--
-      <div class="gridbox favorites">
-        <h1 class="gridbox-header">Your Favorites</h1>
-        <div class="project-row" id="favorites">
-          <div v-for="project in favorites" :alt="project[1]" class="project-thumb">
-            <a :href="'javascript: selectedLink = ' + project[2] + '; openProject();'"><img :src="project[0]" class="project-img">
-              <div class="overlay">{{ project[1][0] }}</div>
-            </a>
-          </div>
-        </div>
-      </div> -->
-      <div class="gridbox yours">
-        <h1 class="gridbox-header"></h1>
-        <div class="project-row" id="forYou">
-          <img src="asset/cantaccess.svg" class="offline-img">
-        </div>
-      </div>
+    <div id="scroller"><a href="#" class="selected">Featured</a><a href="#" class="unselected">Top Loved</a><a href="#" class="unselected">Trending</a><a href="#" class="unselected">Mobile-Friendly</a><a href="#" class="unselected">Popular</a>
     </div>
-    <!-- User Info window starts here -->
-    <div class="user-shade closed-window" id="userShade">
-      <h1 class="user-title">User Info</h1>
-      <input class="username-input" type="text" id="usrNm" placeholder="type your Scratch username here">
-      <p class="para" id="svCode"></p><br>
-      <p class="para" id="svAdvisory">
-        Hit the copy button and paste the copied code on your Scratch profile as a comment. Then click the Verify button again when the comment has posted.<br><br>
-      </p>
-      <div class="inline"><a class="bigbtn" id="svVerifyBtn" href="#">Verify</a><a class="bigbtn" id="svCopyBtn" href="#" data-clipboard-text="">Copy</a>
-      </div>
+    <div id="projects">
     </div>
-    <!-- User Info window ends here and project window starts -->
-    <div class="project-shade closed-window" id="projectShade">
-      <h1 class="project-title">{{ projectName }}</h1>
-      <iframe id="projectFrame" src="#" :width="width" :height="height"></iframe>
-      <br>
-      <span class="user"></span>
-      <p class="desc">{{ description }}</p>
-    </div>
+    <img id="not-found" src="asset/404-img.svg"></img>
   </div>
-
-  <script type="module" src="scripts/index.js" charset="utf-8"></script>
+  <!-- Loader by Jeremie Gaffarel, https://codepen.io/gaffareljeremie -->
+  <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+    <circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+  </svg>
+  <script type="module" src="scripts/new.js" charset="utf-8"></script>
 
 </body>
 
