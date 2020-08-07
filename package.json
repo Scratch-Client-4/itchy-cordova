@@ -2,7 +2,7 @@
   "scripts": {
     "start": "parcel index.html --global index",
     "dev": "parcel index.html --global index",
-    "build": "parcel build index.html --global  index --out-dir www"
+    "build": "parcel build index.html --global index --public-url ."
   },
   "devDependencies": {
     "cssnano": "^4.1.10",
