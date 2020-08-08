@@ -2,19 +2,19 @@
   "scripts": {
     "start": "parcel index.html --global index",
     "dev": "parcel index.html --global index",
-    "build": "parcel build index.html --global  index --out-dir www"
+    "build": "parcel build index.html --global  index --out-dir www --public-url ."
   },
   "devDependencies": {
+    "cordova-android": "^8.1.0",
+    "cordova-plugin-whitelist": "^1.3.4",
     "cssnano": "^4.1.10",
     "sass": "^1.26.10",
-    "vue": "^2.6.11",
-    "cordova-plugin-whitelist": "^1.3.4"
+    "vue": "^2.6.11"
   },
   "dependencies": {
     "parcel": "^1.12.4",
     "clipboard": "^2.0.6",
     "human-readable-time": "^0.3.0",
-    "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0"
   },
   "alias": {

@@ -1,11 +1,13 @@
 let rawData, scrollOptions = document.getElementById('scroller').childNodes,
-  theme = window.localStorage.getItem('theme'),
   root = document.documentElement;
 window.addEventListener('load', () => {
   document.getElementsByClassName('spinner')[0].style.display = 'block';
-  if (!theme) {
+  if (window.localStorage.getItem('theme') == null) {
     window.localStorage.setItem('theme', 'light');
-    theme = 'light';
+  } else if (window.localStorage.getItem('theme') == 'light') {
+    setTheme('light');
+  } else if (window.localStorage.getItem('theme') == 'dark') {
+    setTheme('dark');
   }
   for (let i = 0; i < scrollOptions.length - 1; i++) {
     scrollOptions[i].addEventListener('click', (event) => {
@@ -32,23 +34,23 @@ window.addEventListener('load', () => {
   getFeaturedProjects(0);
 })
 
-let swapTheme = () => {
-  if (theme == 'light') {
-    theme = 'dark';
+let setTheme = (toSwap) => {
+  if (toSwap == 'dark') {
     window.localStorage.setItem('theme', 'dark');
     root.style.setProperty('--bg-primary', '#191919');
     root.style.setProperty('--bg-secondary', '#2a2a2a');
     root.style.setProperty('--bg-tertiary', '#2a2a2a');
     root.style.setProperty('--text', '#fff');
     root.style.setProperty('--border', '#2c2c2c');
-  } else if (theme == 'dark') {
-    theme = 'light';
+  } else if (toSwap == 'light') {
     window.localStorage.setItem('theme', 'light');
     root.style.setProperty('--bg-primary', '#fff');
     root.style.setProperty('--bg-secondary', '#eeeeee');
     root.style.setProperty('--bg-tertiary', '#000');
     root.style.setProperty('--text', '#000');
     root.style.setProperty('--border', '#ddd');
+  } else {
+    return 1;
   }
 }
 
@@ -98,5 +100,15 @@ let getTopLovedProjects = (offset) => {
 
 document.getElementById('darkModeToggle').addEventListener('click', (event) => {
   event.preventDefault();
-  swapTheme();
+  if (window.localStorage.getItem('theme') == 'light') {
+    setTheme('dark');
+  } else if (window.localStorage.getItem('theme') == 'dark') {
+    setTheme('light');
+  }
 });
+
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  setTheme('dark');
+} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+  setTheme('light');
+}
