@@ -1,4 +1,4 @@
-let rawData, scrollOptions = document.getElementById('scroller').childNodes,
+let scrollOptions = document.getElementById('scroller').childNodes,
   root = document.documentElement;
 window.addEventListener('load', () => {
   document.getElementsByClassName('spinner')[0].style.display = 'block';
@@ -20,11 +20,14 @@ window.addEventListener('load', () => {
         scrollOptions[i].classList.replace('unselected', 'selected');
         document.getElementById('projects').innerHTML = "";
         if (scrollOptions[i].innerText == 'Featured') {
-          document.getElementById('not-found').display = "none";
+          document.getElementById('not-found').style.display = "none";
           getFeaturedProjects(0);
         } else if (scrollOptions[i].innerText == 'Top Loved') {
-          document.getElementById('not-found').display = "none";
+          document.getElementById('not-found').style.display = "none";
           getTopLovedProjects(0);
+        } else if (scrollOptions[i].innerText = 'Trending') {
+          document.getElementById('not-found').style.display = "none";
+          getTrendingProjects(0);
         } else {
           document.getElementById('not-found').style.display = "block";
         }
@@ -69,6 +72,7 @@ let renderProject = (id, title, user) => {
 }
 
 let getFeaturedProjects = (offset) => {
+  let rawData;
   document.getElementsByClassName('spinner')[0].style.display = 'block';
   fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/proxy/featured?offset=' + offset + '&limit=20')
     .then((response) => {
@@ -84,6 +88,7 @@ let getFeaturedProjects = (offset) => {
 }
 
 let getTopLovedProjects = (offset) => {
+  let rawData;
   document.getElementsByClassName('spinner')[0].style.display = 'block';
   fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/proxy/featured?offset=' + offset + '&limit=20')
     .then((response) => {
@@ -93,6 +98,22 @@ let getTopLovedProjects = (offset) => {
       rawData = data;
       for (let i = 0; i < 20; i++) {
         renderProject(rawData["community_most_loved_projects"][i]['id'], rawData["community_most_loved_projects"][i]['title'].slice(0, 30), rawData["community_most_loved_projects"][i]['creator']);
+      }
+      document.getElementsByClassName('spinner')[0].style.display = 'none';
+    });
+}
+
+let getTrendingProjects = (offset) => {
+  let rawData;
+  document.getElementsByClassName('spinner')[0].style.display = 'block';
+  fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/explore/projects?offset=' + offset + '&limit=20&mode=trending')
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      rawData = data;
+      for (let i = 0; i < 20; i++) {
+        renderProject(rawData[i]['id'], rawData[i]['title'].slice(0, 30), rawData[i]['author']['username']);
       }
       document.getElementsByClassName('spinner')[0].style.display = 'none';
     });
