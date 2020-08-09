@@ -1,41 +1,5 @@
-let scrollOptions = document.getElementById('scroller').childNodes,
+let scrollOptions = document.getElementById('tagScroller').childNodes,
   root = document.documentElement;
-window.addEventListener('load', () => {
-  document.getElementsByClassName('spinner')[0].style.display = 'block';
-  if (window.localStorage.getItem('theme') == null) {
-    window.localStorage.setItem('theme', 'light');
-  } else if (window.localStorage.getItem('theme') == 'light') {
-    setTheme('light');
-  } else if (window.localStorage.getItem('theme') == 'dark') {
-    setTheme('dark');
-  }
-  for (let i = 0; i < scrollOptions.length - 1; i++) {
-    scrollOptions[i].addEventListener('click', (event) => {
-      event.preventDefault();
-      document.getElementById('not-found').display = "none";
-      if (scrollOptions[i].classList.contains('unselected')) {
-        for (let j = 0; j < scrollOptions.length - 1; j++) {
-          scrollOptions[j].classList.replace('selected', 'unselected');
-        }
-        scrollOptions[i].classList.replace('unselected', 'selected');
-        document.getElementById('projects').innerHTML = "";
-        if (scrollOptions[i].innerText == 'Featured') {
-          document.getElementById('not-found').style.display = "none";
-          getFeaturedProjects(0);
-        } else if (scrollOptions[i].innerText == 'Top Loved') {
-          document.getElementById('not-found').style.display = "none";
-          getTopLovedProjects(0);
-        } else if (scrollOptions[i].innerText = 'Trending') {
-          document.getElementById('not-found').style.display = "none";
-          getTrendingProjects(0);
-        } else {
-          document.getElementById('not-found').style.display = "block";
-        }
-      }
-    })
-  }
-  getFeaturedProjects(0);
-})
 
 let setTheme = (toSwap) => {
   if (toSwap == 'dark') {
@@ -74,7 +38,7 @@ let renderProject = (id, title, user) => {
 let getFeaturedProjects = (offset) => {
   let rawData;
   document.getElementsByClassName('spinner')[0].style.display = 'block';
-  fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/proxy/featured?offset=' + offset + '&limit=20')
+  fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/proxy/featured?offset=' + offset + '&limit=20')
     .then((response) => {
       return response.json();
     })
@@ -90,7 +54,7 @@ let getFeaturedProjects = (offset) => {
 let getTopLovedProjects = (offset) => {
   let rawData;
   document.getElementsByClassName('spinner')[0].style.display = 'block';
-  fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/proxy/featured?offset=' + offset + '&limit=20')
+  fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/proxy/featured?offset=' + offset + '&limit=20')
     .then((response) => {
       return response.json();
     })
@@ -106,7 +70,7 @@ let getTopLovedProjects = (offset) => {
 let getTrendingProjects = (offset) => {
   let rawData;
   document.getElementsByClassName('spinner')[0].style.display = 'block';
-  fetch('https://cors-anywhere.herokuapp.com/api.scratch.mit.edu/explore/projects?offset=' + offset + '&limit=20&mode=trending')
+  fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/explore/projects?offset=' + offset + '&limit=20&mode=trending')
     .then((response) => {
       return response.json();
     })
@@ -119,17 +83,78 @@ let getTrendingProjects = (offset) => {
     });
 }
 
-document.getElementById('darkModeToggle').addEventListener('click', (event) => {
+let getRecentProjects = (offset) => {
+  let rawData;
+  document.getElementsByClassName('spinner')[0].style.display = 'block';
+  fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/explore/projects?offset=' + offset + '&limit=20&mode=recent')
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      rawData = data;
+      for (let i = 0; i < 20; i++) {
+        renderProject(rawData[i]['id'], rawData[i]['title'].slice(0, 30), rawData[i]['author']['username']);
+      }
+      document.getElementsByClassName('spinner')[0].style.display = 'none';
+    });
+}
+
+let getTaggedProjects = (tag, offset) => {
+  let rawData;
+  document.getElementsByClassName('spinner')[0].style.display = 'block';
+  fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/explore/projects?q=' + tag + "&offset=" + offset + '&limit=20&mode=trending')
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      rawData = data;
+      for (let i = 0; i < 20; i++) {
+        renderProject(rawData[i]['id'], rawData[i]['title'].slice(0, 30), rawData[i]['author']['username']);
+      }
+      document.getElementsByClassName('spinner')[0].style.display = 'none';
+    });
+}
+
+document.getElementById('menuButton').addEventListener('click', (event) => {
   event.preventDefault();
-  if (window.localStorage.getItem('theme') == 'light') {
-    setTheme('dark');
-  } else if (window.localStorage.getItem('theme') == 'dark') {
-    setTheme('light');
-  }
 });
 
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  setTheme('dark');
-} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-  setTheme('light');
-}
+window.addEventListener('load', () => {
+  document.getElementsByClassName('spinner')[0].style.display = 'block';
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    setTheme('dark');
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    setTheme('light');
+  }
+  if (window.localStorage.getItem('theme') == null) {
+    window.localStorage.setItem('theme', 'light');
+  } else if (window.localStorage.getItem('theme') == 'light') {
+    setTheme('light');
+  } else if (window.localStorage.getItem('theme') == 'dark') {
+    setTheme('dark');
+  }
+  for (let i = 0; i < scrollOptions.length - 1; i++) {
+    scrollOptions[i].addEventListener('click', (event) => {
+      event.preventDefault();
+      if (scrollOptions[i].classList.contains('unselected')) {
+        for (let j = 0; j < scrollOptions.length - 1; j++) {
+          scrollOptions[j].classList.replace('selected', 'unselected');
+        }
+        scrollOptions[i].classList.replace('unselected', 'selected');
+        document.getElementById('projects').innerHTML = "";
+        if (scrollOptions[i].innerText == 'Featured') {
+          getFeaturedProjects(0);
+        } else if (scrollOptions[i].innerText == 'Top Loved') {
+          getTopLovedProjects(0);
+        } else if (scrollOptions[i].innerText == 'Trending') {
+          getTrendingProjects(0);
+        } else if (scrollOptions[i].innerText == 'Recent') {
+          getRecentProjects(0);
+        } else {
+          getTaggedProjects(scrollOptions[i].innerText.toLowerCase(), 0)
+        }
+      }
+    })
+  }
+  getFeaturedProjects(0);
+})

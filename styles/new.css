@@ -56,22 +56,25 @@ body {
   font-weight: 600;
 }
 
-#scroller {
+.scroller {
   margin-top: 1em;
   padding: 1em 5%;
   overflow-x: scroll;
   overflow-y: visible;
   white-space: nowrap;
+  transition: 0.2s;
 }
 
-#scroller a {
+.scroller a {
   color: #fff;
   padding: 0.7em;
   margin-right: 0.5em;
   border-radius: 0.3em;
+  -webkit-tap-highlight-color: transparent;
+  transition: 0.2s;
 }
 
-#scroller::-webkit-scrollbar {
+.scroller::-webkit-scrollbar {
   width: 0.1em;
 }
 
@@ -119,7 +122,7 @@ body {
   margin-left: 20vw;
 }
 
-#darkModeToggle {
+#menuButton {
   position: absolute;
   right: 20px;
   width: 1em;
