@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.scratchclient4.sc4mobile" version="0.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name short="SC4">Scratch Client 4</name>
+<widget id="org.scratchclient4.sc4mobile" version="0.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name short="Itchy">Itchy</name>
     <description>
-        A Scratch client for mobile devices.
+        A Scratch client for Android mobile devices.
     </description>
     <author email="hi@micahlindley.com" href="http://sc4.micahlindley.com">
         The Scratch Client 4 Contributors
@@ -21,6 +21,7 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <icon src="asset/icon.png">
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
