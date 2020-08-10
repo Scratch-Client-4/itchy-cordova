@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.scratchclient4.sc4mobile" version="0.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name short="Itchy">Itchy</name>
+<widget id="org.scratchclient4.sc4mobile" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Itchy</name>
     <description>
         A Scratch client for Android mobile devices.
     </description>
@@ -11,6 +11,7 @@
     <!-- Note : Portrait orientation is voluntarily not enforced. -->
     <preference name="target-device" value="handset" />
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="19" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

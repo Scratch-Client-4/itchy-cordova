@@ -24,7 +24,7 @@ let setTheme = (toSwap) => {
 let renderProject = (id, title, user) => {
   let div = document.createElement('div');
   div.classList.add('project');
-  div.setAttribute('data-project-id', id);
+  div.setAttribute('data-projectId', id);
   let img = document.createElement('img');
   img.setAttribute('src', 'https://cdn2.scratch.mit.edu/get_image/project/' + id + '_480x360.png');
   div.appendChild(img);
@@ -33,6 +33,10 @@ let renderProject = (id, title, user) => {
   divTwo.innerHTML = title + ' by <a href="#">' + user + '</a>';
   div.appendChild(divTwo);
   document.getElementById('projects').appendChild(div);
+  div.addEventListener('click', (event) => {
+    event.preventDefault();
+    cordova.plugins.browsertab.openUrl('https://scratch.mit.edu/projects/' + id);
+  })
 }
 
 let getFeaturedProjects = (offset) => {
@@ -119,20 +123,19 @@ document.getElementById('menuButton').addEventListener('click', (event) => {
   event.preventDefault();
 });
 
-window.addEventListener('load', () => {
+document.addEventListener('deviceready', windowLoaded);
+
+function windowLoaded() {
   document.getElementsByClassName('spinner')[0].style.display = 'block';
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     setTheme('dark');
   } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
     setTheme('light');
   }
-  if (window.localStorage.getItem('theme') == null) {
-    window.localStorage.setItem('theme', 'light');
-  } else if (window.localStorage.getItem('theme') == 'light') {
-    setTheme('light');
-  } else if (window.localStorage.getItem('theme') == 'dark') {
+  console.log(cordova.plugins.ThemeDetection.isAvailable());
+  /* if (cordova.plugins.ThemeDetection.isDarkMode() == true) {
     setTheme('dark');
-  }
+  } */
   for (let i = 0; i < scrollOptions.length - 1; i++) {
     scrollOptions[i].addEventListener('click', (event) => {
       event.preventDefault();
@@ -157,4 +160,6 @@ window.addEventListener('load', () => {
     })
   }
   getFeaturedProjects(0);
-})
+}
+
+console.log(cordova);
