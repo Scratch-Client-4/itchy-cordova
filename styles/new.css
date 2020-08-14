@@ -123,8 +123,7 @@ body {
 }
 
 #menuButton {
-  position: absolute;
-  right: 20px;
+  float: right;
   width: 1em;
   fill: var(--accent) !important;
 }

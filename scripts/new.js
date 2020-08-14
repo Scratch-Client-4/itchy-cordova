@@ -1,3 +1,5 @@
+console.log("Scratch Client 4 Mobile")
+
 let scrollOptions = document.getElementById('tagScroller').childNodes,
   root = document.documentElement;
 
@@ -132,10 +134,6 @@ function windowLoaded() {
   } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
     setTheme('light');
   }
-  console.log(cordova.plugins.ThemeDetection.isAvailable());
-  /* if (cordova.plugins.ThemeDetection.isDarkMode() == true) {
-    setTheme('dark');
-  } */
   for (let i = 0; i < scrollOptions.length - 1; i++) {
     scrollOptions[i].addEventListener('click', (event) => {
       event.preventDefault();
@@ -161,5 +159,3 @@ function windowLoaded() {
   }
   getFeaturedProjects(0);
 }
-
-console.log(cordova);
