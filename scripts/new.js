@@ -51,7 +51,7 @@ let getFeaturedProjects = (offset) => {
     .then((data) => {
       rawData = data;
       for (let i = 0; i < 20; i++) {
-        renderProject(rawData["community_featured_projects"][i]['id'], rawData["community_featured_projects"][i]['title'].slice(0, 30), rawData["community_featured_projects"][i]['creator']);
+        renderProject(rawData["community_featured_projects"][i]['id'], rawData["community_featured_projects"][i]['title'], rawData["community_featured_projects"][i]['creator']);
       }
       document.getElementsByClassName('spinner')[0].style.display = 'none';
     });
@@ -67,7 +67,7 @@ let getTopLovedProjects = (offset) => {
     .then((data) => {
       rawData = data;
       for (let i = 0; i < 20; i++) {
-        renderProject(rawData["community_most_loved_projects"][i]['id'], rawData["community_most_loved_projects"][i]['title'].slice(0, 30), rawData["community_most_loved_projects"][i]['creator']);
+        renderProject(rawData["community_most_loved_projects"][i]['id'], rawData["community_most_loved_projects"][i]['title'], rawData["community_most_loved_projects"][i]['creator']);
       }
       document.getElementsByClassName('spinner')[0].style.display = 'none';
     });
@@ -83,7 +83,7 @@ let getTrendingProjects = (offset) => {
     .then((data) => {
       rawData = data;
       for (let i = 0; i < 20; i++) {
-        renderProject(rawData[i]['id'], rawData[i]['title'].slice(0, 30), rawData[i]['author']['username']);
+        renderProject(rawData[i]['id'], rawData[i]['title'], rawData[i]['author']['username']);
       }
       document.getElementsByClassName('spinner')[0].style.display = 'none';
     });
@@ -99,7 +99,7 @@ let getRecentProjects = (offset) => {
     .then((data) => {
       rawData = data;
       for (let i = 0; i < 20; i++) {
-        renderProject(rawData[i]['id'], rawData[i]['title'].slice(0, 30), rawData[i]['author']['username']);
+        renderProject(rawData[i]['id'], rawData[i]['title'], rawData[i]['author']['username']);
       }
       document.getElementsByClassName('spinner')[0].style.display = 'none';
     });
@@ -115,7 +115,7 @@ let getTaggedProjects = (tag, offset) => {
     .then((data) => {
       rawData = data;
       for (let i = 0; i < 20; i++) {
-        renderProject(rawData[i]['id'], rawData[i]['title'].slice(0, 30), rawData[i]['author']['username']);
+        renderProject(rawData[i]['id'], rawData[i]['title'], rawData[i]['author']['username']);
       }
       document.getElementsByClassName('spinner')[0].style.display = 'none';
     });
