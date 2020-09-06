@@ -1,4 +1,4 @@
-console.log("Scratch Client 4 Mobile")
+console.log("Scratch Client 4 Mobile");
 
 let scrollOptions = document.getElementById('tagScroller').childNodes,
   root = document.documentElement;
@@ -157,5 +157,9 @@ function windowLoaded() {
       }
     })
   }
+  document.getElementById('searchbox').addEventListener('search', function() {
+    let searchterm = document.getElementById('searchbox').value;
+    window.location.replace('search.html?q=' + searchterm);
+  });
   getFeaturedProjects(0);
 }
