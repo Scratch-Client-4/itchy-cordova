@@ -5,7 +5,7 @@
     "build": "parcel build index.html --global  index --out-dir www --public-url ."
   },
   "devDependencies": {
-    "cordova-android": "^8.1.0",
+    "cordova-android": "^9.0.0",
     "cordova-plugin-browsertab": "^0.2.0",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device": "^2.0.3",
@@ -17,10 +17,12 @@
     "vue": "^2.6.11"
   },
   "dependencies": {
-    "parcel": "^1.12.4",
     "clipboard": "^2.0.6",
+    "compare-func": "^2.0.0",
+    "cordova": "^10.0.0",
+    "cordova-browser": "^6.0.0",
     "human-readable-time": "^0.3.0",
-    "cordova-browser": "^6.0.0"
+    "parcel": "^1.12.4"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
@@ -34,8 +36,8 @@
       "cordova-plugin-theme-detection": {}
     },
     "platforms": [
-      "android",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }

@@ -13,7 +13,7 @@ A mobile app for Scratch Client 4 built with Apache Cordova
 ## Building
 ### Requirements
 - [Git](https://git-scm.org)
-- [Node.js](https://nodejs.org) and NPM (most likely  bundled with Node.js)
+- [Node.js](https://nodejs.org) and NPM (most likely  bundled with your Node.js installation)
 - The Cordova CLI, install it with `npm install -g cordova`
   - Note : [macOS users might need to change directory permisisons if getting a permission error.](https://stackoverflow.com/a/47252840/10074924).
 - A JDK, Android Studio, and Gradle. Install them according to [this guide](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html).
@@ -22,18 +22,19 @@ First, clone the repository:
 ```bash
 git clone https://github.com/scratch-client-4/mobile
 ```
-Then go into it:
+Then go into it and install all dependencies:
 ```bash
 cd mobile
+npm install
 ```
 
 You should see two version numbers appear.  Then run the build script:
 ```bash
 npm run-script build
 ```
-It'll build you the runnable source files (HTML, CSS, and JavaScript) in a directory called `www`.  After that you can build the project into an Android APK file: 
+It'll build you the runnable source files (HTML, CSS, and JavaScript) in a directory called `www`.  After that you can build the project into an Android package (APK) file:
 ```bash
 cordova platform add android
-cordova build
+cordova build android --minSdkVersion=22
 ```
 The last few lines of the output of that command will tell you where the APK is located.
