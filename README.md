@@ -38,3 +38,9 @@ cordova platform add android
 cordova build android --minSdkVersion=22
 ```
 The last few lines of the output of that command will tell you where the APK is located.
+
+For development, you can also run the app in the browser : after `npm run build`, do :
+```
+cordova platform add browser
+cordova run browser
+```
