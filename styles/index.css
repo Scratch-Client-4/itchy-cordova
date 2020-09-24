@@ -127,3 +127,17 @@ body {
   width: 1em;
   fill: var(--accent) !important;
 }
+
+#results {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.result {
+  background: var(--bg-primary);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 15px;
+  width: max-content;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 1.5em;
+}
