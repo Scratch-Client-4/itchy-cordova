@@ -1,6 +1,6 @@
 # SC4 Mobile
 
-A mobile app for Scratch Client 4 built with Apache Cordova
+A mobile app for Scratch Client 4 built with Apache Cordova.
 
 [![Join the chat at https://gitter.im/scratchclient4/](https://badges.gitter.im/scratchclient4/mobile.svg)](https://gitter.im/scratchclient4?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ![GitHub issues](https://img.shields.io/github/issues-raw/scratch-client-4/mobile)
@@ -8,13 +8,13 @@ A mobile app for Scratch Client 4 built with Apache Cordova
 ![GitHub All Releases](https://img.shields.io/github/downloads/Scratch-Client-4/mobile/total)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Scratch-Client-4/mobile)
 
-![a screenshot of SC4](/asset/screenshot.png)
+![A screenshot of SC4 on an Android Phone](/asset/screenshot.png)
 
 ## Building
 ### Requirements
 - [Git](https://git-scm.org)
 - [Node.js](https://nodejs.org) and NPM (most likely  bundled with your Node.js installation)
-- The Cordova CLI, install it with `npm install -g cordova`
+- The Cordova CLI, install it with: `npm install -g cordova`
   - Note : [macOS users might need to change directory permisisons if getting a permission error.](https://stackoverflow.com/a/47252840/10074924).
 - A JDK, Android Studio, and Gradle. Install them according to [this guide](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html).
 
