@@ -129,11 +129,19 @@ document.addEventListener('deviceready', windowLoaded);
 
 function windowLoaded() {
   document.getElementsByClassName('spinner')[0].style.display = 'block';
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    setTheme('dark');
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    setTheme('light');
-  }
+  cordova.plugins.ThemeDetection.isDarkModeEnabled(
+    function(success) {
+      console.log(success.message);
+      if (success.value) {
+        setTheme('dark');
+      } else {
+        setTheme('light');
+      }
+    },
+    function(error) {
+      console.log(error);
+    }
+  );
   for (let i = 0; i < scrollOptions.length - 1; i++) {
     scrollOptions[i].addEventListener('click', (event) => {
       event.preventDefault();
