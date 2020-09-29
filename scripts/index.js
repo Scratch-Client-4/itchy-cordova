@@ -163,6 +163,8 @@ function windowLoaded() {
           getTrendingProjects(0);
         } else if (scrollOptions[i].innerText == 'Recent') {
           getRecentProjects(0);
+        } else if (scrollOptions[i].innerText == 'Messages') {
+          window.open('https://scratch.mit.edu/messages');
         } else {
           getTaggedProjects(scrollOptions[i].innerText.toLowerCase(), 0)
         }
