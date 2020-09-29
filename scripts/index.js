@@ -24,6 +24,9 @@ let setTheme = (toSwap) => {
 }
 
 let renderProject = (id, title, user) => {
+  if (device.platform == "Android") {
+    window.open = cordova.plugins.browsertab.openUrl;
+  }
   let div = document.createElement('div');
   div.classList.add('project');
   div.setAttribute('data-projectId', id);
@@ -37,7 +40,7 @@ let renderProject = (id, title, user) => {
   document.getElementById('projects').appendChild(div);
   div.addEventListener('click', (event) => {
     event.preventDefault();
-    cordova.plugins.browsertab.openUrl('https://scratch.mit.edu/projects/' + id);
+    window.open('https://scratch.mit.edu/projects/' + id);
   })
 }
 
