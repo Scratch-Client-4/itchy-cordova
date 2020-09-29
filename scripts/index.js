@@ -29,6 +29,7 @@ let renderProject = (id, title, user) => {
   }
   let div = document.createElement('div');
   div.classList.add('project');
+  div.classList.add('ripple');
   div.setAttribute('data-projectId', id);
   let img = document.createElement('img');
   img.setAttribute('src', 'https://cdn2.scratch.mit.edu/get_image/project/' + id + '_480x360.png');
