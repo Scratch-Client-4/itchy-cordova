@@ -24,9 +24,6 @@ let setTheme = (toSwap) => {
 }
 
 let renderProject = (id, title, user) => {
-  if (device.platform == "Android") {
-    window.open = cordova.plugins.browsertab.openUrl;
-  }
   let div = document.createElement('div');
   div.classList.add('project');
   div.classList.add('ripple');
@@ -132,6 +129,19 @@ document.getElementById('menuButton').addEventListener('click', (event) => {
 document.addEventListener('deviceready', windowLoaded);
 
 function windowLoaded() {
+  if (device.platform == "Android") {
+    window.open = cordova.plugins.browsertab.openUrl;
+  }
+  screen.orientation.addEventListener('change', function() {
+    console.log('orientation changed');
+    if (screen.orientation.type.includes('landscape')) {
+      document.getElementById('projects').style.gridTemplateColumns = "auto auto";
+      document.getElementById('projects').style.gridColumnGap = "3%";
+    } else if (screen.orientation.type.includes('portrait')) {
+      document.getElementById('projects').style.gridTemplateColumns = "auto";
+      document.getElementById('projects').style.gridColumnGap = "0";
+    }
+  })
   document.getElementsByClassName('spinner')[0].style.display = 'block';
   cordova.plugins.ThemeDetection.isDarkModeEnabled(
     function(success) {
@@ -165,6 +175,7 @@ function windowLoaded() {
           getRecentProjects(0);
         } else if (scrollOptions[i].innerText == 'Messages') {
           window.open('https://scratch.mit.edu/messages');
+          document.getElementsByClassName('spinner')[0].style.display = 'none';
         } else {
           getTaggedProjects(scrollOptions[i].innerText.toLowerCase(), 0)
         }

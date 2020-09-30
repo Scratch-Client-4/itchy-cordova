@@ -93,6 +93,8 @@ body {
   padding-right: 5%;
   padding-bottom: 1em;
   transform: translateX(-2px);
+  display: grid;
+  grid-template-columns: 1;
 }
 
 .project {
