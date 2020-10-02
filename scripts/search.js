@@ -29,3 +29,7 @@ window.addEventListener('load', function() {
       document.getElementsByClassName('spinner')[0].style.display = 'none';
     });
 })
+
+document.addEventListener('backbutton', function() {
+  window.location.replace('index.html');
+})
