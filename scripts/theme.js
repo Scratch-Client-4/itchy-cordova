@@ -18,6 +18,7 @@ let setTheme = (toSwap) => {
     return 1;
   }
 }
+setTheme(window.localStorage.getItem('theme'));
 
 document.addEventListener('deviceready', detectTheme);
 
