@@ -11,7 +11,9 @@ var getParams = function(url) {
   return params;
 };
 
-window.addEventListener('load', function() {
+document.addEventListener('deviceready', windowLoaded);
+
+function windowLoaded() {
   fetch('https://cors-anywhere.herokuapp.com/api.qwant.com/api/search/web?count=10&q=site:scratch.mit.edu%20' + getParams(window.location.href).q + '&t=site:scratch.mit.edu%20' + getParams(window.location.href).q + '&f=&offset=0&locale=en_us&uiv=4')
     .then(response => response.json())
     .then(data => {
@@ -28,8 +30,18 @@ window.addEventListener('load', function() {
       }
       document.getElementsByClassName('spinner')[0].style.display = 'none';
     });
-})
+  screen.orientation.addEventListener('change', function() {
+    console.log('orientation changed');
+    if (screen.orientation.type.includes('landscape')) {
+      document.getElementById('projects').style.gridTemplateColumns = "auto auto";
+      document.getElementById('projects').style.gridColumnGap = "3%";
+    } else if (screen.orientation.type.includes('portrait')) {
+      document.getElementById('projects').style.gridTemplateColumns = "auto";
+      document.getElementById('projects').style.gridColumnGap = "0";
+    }
+  })
+}
 
 document.addEventListener('backbutton', function() {
   window.location.replace('index.html');
-})
+});
