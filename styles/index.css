@@ -42,12 +42,17 @@ body {
   margin-top: 0.45em;
   background: var(--bg-secondary);
   border: solid 1px var(--border);
+  color: var(--text);
   font-size: 1.2em;
   padding-top: 0.7em;
   padding-bottom: 0.7em;
   padding-left: 0.5em;
   width: calc(100% - 0.5em);
   border-radius: 0.4em;
+}
+
+#searchbox::-webkit-search-cancel-button {
+  -webkit-appearance: none;
 }
 
 #searchbox::placeholder {
@@ -97,7 +102,7 @@ body {
   grid-template-columns: 1;
 }
 
-.project {
+.project, .result {
   width: 100%;
   border-radius: 0.5em;
   border: solid var(--border) 2px;
@@ -129,6 +134,7 @@ body {
   float: right;
   width: 1em;
   fill: var(--accent) !important;
+  padding-right: 0.25em;
 }
 
 #results {
@@ -137,10 +143,8 @@ body {
 }
 
 .result {
-  background: var(--bg-primary);
-  box-shadow: rgba(0, 0, 0, 0.3) 0 0 15px;
-  width: max-content;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 1.5em;
+  text-align: left;
+  padding: 1.2em;
+  color: var(--accent);
+  max-width: 79vw;
 }
