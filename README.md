@@ -3,10 +3,10 @@
 A mobile client (app) for Scratch built with Apache Cordova
 
 [![Join the chat at https://gitter.im/scratchclient4/](https://badges.gitter.im/scratchclient4/mobile.svg)](https://gitter.im/scratchclient4?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-![GitHub issues](https://img.shields.io/github/issues-raw/scratch-client-4/mobile)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/scratch-client-4/mobile)
-![GitHub All Releases](https://img.shields.io/github/downloads/Scratch-Client-4/mobile/total)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Scratch-Client-4/mobile)
+![GitHub issues](https://img.shields.io/github/issues-raw/scratch-client-4/itchy-cordova)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/scratch-client-4/itchy-cordova)
+![GitHub All Releases](https://img.shields.io/github/downloads/Scratch-Client-4/itchy-cordova/total)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Scratch-Client-4/itchy-cordova)
 
 ![A screenshot of Itchy](/asset/screenshot.png)
 
