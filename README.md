@@ -1,6 +1,6 @@
-# SC4 Mobile
+# Itchy
 
-A mobile app for Scratch Client 4 built with Apache Cordova.
+A mobile client (app) for Scratch built with Apache Cordova
 
 [![Join the chat at https://gitter.im/scratchclient4/](https://badges.gitter.im/scratchclient4/mobile.svg)](https://gitter.im/scratchclient4?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ![GitHub issues](https://img.shields.io/github/issues-raw/scratch-client-4/mobile)
@@ -8,7 +8,7 @@ A mobile app for Scratch Client 4 built with Apache Cordova.
 ![GitHub All Releases](https://img.shields.io/github/downloads/Scratch-Client-4/mobile/total)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Scratch-Client-4/mobile)
 
-![A screenshot of SC4 on an Android Phone](/asset/screenshot.png)
+![A screenshot of Itchy](/asset/screenshot.png)
 
 ## Building
 ### Requirements
@@ -20,11 +20,11 @@ A mobile app for Scratch Client 4 built with Apache Cordova.
 
 First, clone the repository:
 ```bash
-git clone https://github.com/scratch-client-4/mobile
+git clone https://github.com/scratch-client-4/itchy-cordova
 ```
 Then go into it and install all dependencies:
 ```bash
-cd mobile
+cd itchy-cordova
 npm install
 ```
 
