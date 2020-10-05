@@ -28,6 +28,12 @@ cd itchy-cordova
 npm install
 ```
 
+For styles we are using LESS, add it globally:
+```bash
+npm install -g less
+npm install -g less-plugin-autoprefix // For autorprefixing
+```
+
 You should see two version numbers appear.  Then run the build script:
 ```bash
 npm run-script build

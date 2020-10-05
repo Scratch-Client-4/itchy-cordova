@@ -1,6 +1,7 @@
 stack/cordova
 .DS_Store
 .cache
+.idea
 www
 node_modules
 platforms
