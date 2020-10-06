@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, width=device-width">
   <title>SC4 | Search</title>
-  <link rel="stylesheet" href="styles/index.css">
-  <link rel="stylesheet" href="styles/loader.css">
+  <link rel="stylesheet" href="styles/main.less">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -16,14 +15,14 @@
       <h1>Search <img src="asset/icon-settings.svg" id="menuButton"></h1>
       <input type="text" id="searchbox" placeholder="Search for User"></input>
     </div>
-    <div class="scroller" id="tagScroller"><a href="#" class="selected">Popular</a><a href="#" class="unselected">Recent</a><a href="#" class="unselected">Trending</a>
+    <div class="scroller" id="tagScroller"><a href="#" class="scroller__link scroller__link--selected">Popular</a><a href="#" class="scroller__link scroller__link--unselected">Recent</a><a href="#" class="scroller__link scroller__link--unselected">Trending</a>
     </div>
     <div id="results">
     </div>
   </div>
   <!-- Loader by Jeremie Gaffarel, https://codepen.io/gaffareljeremie -->
   <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-    <circle class="circle" fill="none" stroke-width="0.4em" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    <circle class="spinner__circle" fill="none" stroke-width="0.4em" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
   </svg>
   <script src="./cordova.js" charset="utf-8"></script>
   <script src="scripts/search.js" charset="utf-8"></script>

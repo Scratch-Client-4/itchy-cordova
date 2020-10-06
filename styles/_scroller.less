@@ -1,0 +1,31 @@
+// Scroller block
+.scroller {
+  margin-top: 1em;
+  padding: 1em 5%;
+  overflow-x: scroll;
+  overflow-y: visible;
+  white-space: nowrap;
+  transition: 0.2s;
+
+  &::-webkit-scrollbar {
+    width: 0.1em;
+  }
+}
+// Scroller link element
+.scroller__link  {
+  color: #fff;
+  padding: 0.8em;
+  margin-right: 0.5em;
+  border-radius: 0.3em;
+  -webkit-tap-highlight-color: transparent;
+  transition: 0.2s;
+  display: inline-block;
+
+  // Scroller link variant
+  &.scroller__link--selected {
+    background: var(--accent);
+  }
+  &.scroller__link--unselected {
+    background: var(--bg-tertiary);
+  }
+}

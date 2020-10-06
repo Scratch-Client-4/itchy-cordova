@@ -8,10 +8,11 @@ let renderProject = (id, title, user) => {
   div.classList.add('ripple');
   div.setAttribute('data-projectId', id);
   let img = document.createElement('img');
+  img.classList.add('project__img');
   img.setAttribute('src', 'https://cdn2.scratch.mit.edu/get_image/project/' + id + '_480x360.png');
   div.appendChild(img);
   let divTwo = document.createElement('div');
-  divTwo.classList.add('project-title');
+  divTwo.classList.add('project__title');
   divTwo.innerHTML = title + ' by <a href="#">' + user + '</a>';
   div.appendChild(divTwo);
   document.getElementById('projects').appendChild(div);
@@ -125,11 +126,12 @@ function windowLoaded() {
   for (let i = 0; i < scrollOptions.length - 1; i++) {
     scrollOptions[i].addEventListener('click', (event) => {
       event.preventDefault();
-      if (scrollOptions[i].classList.contains('unselected')) {
+      if (scrollOptions[i].classList.contains('scroller__link--unselected')) {
         for (let j = 0; j < scrollOptions.length - 1; j++) {
-          scrollOptions[j].classList.replace('selected', 'unselected');
+          console.log(scrollOptions);
+          scrollOptions[j].classList.replace('scroller__link--selected', 'scroller__link--unselected');
         }
-        scrollOptions[i].classList.replace('unselected', 'selected');
+        scrollOptions[i].classList.replace('scroller__link--unselected', 'scroller__link--selected');
         document.getElementById('projects').innerHTML = "";
         if (scrollOptions[i].innerText == 'Featured') {
           getFeaturedProjects(0);
