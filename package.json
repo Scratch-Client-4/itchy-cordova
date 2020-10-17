@@ -16,6 +16,7 @@
     "cssnano": "^4.1.10",
     "es6-promise-plugin": "^4.2.2",
     "less": "^3.12.2",
+    "node-forge": ">=0.10.0",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-html-externals": "^0.2.0",
     "sass": "^1.26.10",
@@ -28,6 +29,7 @@
     "cordova-browser": "^6.0.0",
     "css-ripple-effect": "^1.0.5",
     "human-readable-time": "^0.3.0",
+    "node-forge": ">=0.10.0",
     "parcel": "^1.12.4"
   },
   "alias": {
