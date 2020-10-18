@@ -40,6 +40,10 @@ function windowLoaded() {
       document.getElementById('projects').style.gridColumnGap = "0";
     }
   })
+  document.getElementById('searchbox').addEventListener('search', function() {
+    let searchterm = document.getElementById('searchbox').value;
+    window.location.replace('search.html?q=' + searchterm);
+  });
 }
 
 document.addEventListener('backbutton', function() {
