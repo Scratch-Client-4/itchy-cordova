@@ -20,6 +20,8 @@ let renderProject = (id, title, user) => {
     event.preventDefault();
     window.open('https://scratch.mit.edu/projects/' + id);
   })
+  let ripple = document.createElement('mat-ripple');
+  div.appendChild(ripple);
 }
 
 let getFeaturedProjects = (offset) => {
