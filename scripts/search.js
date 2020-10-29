@@ -20,9 +20,12 @@ function windowLoaded() {
       for (let j = 0; j < 10; j++) {
         let result = document.createElement('div');
         result.classList.add('result');
+        result.classList.add('ripple');
         let resultTitle = document.createElement('h4');
         resultTitle.innerHTML = data.data.result.items[j].title;
         result.appendChild(resultTitle);
+        let ripple = document.createElement('mat-ripple');
+        result.appendChild(ripple);
         result.addEventListener('click', function() {
           cordova.plugins.browsertab.openUrl(data.data.result.items[j].url);
         });
@@ -40,6 +43,10 @@ function windowLoaded() {
       document.getElementById('projects').style.gridColumnGap = "0";
     }
   })
+  document.getElementById('searchbox').addEventListener('search', function() {
+    let searchterm = document.getElementById('searchbox').value;
+    window.location.replace('search.html?q=' + searchterm);
+  });
 }
 
 document.addEventListener('backbutton', function() {

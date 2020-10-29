@@ -1,3 +1,4 @@
+import MatRipple from 'mat-ripple';
 let root = document.documentElement;
 let setTheme = (toSwap) => {
   if (toSwap == 'dark') {
@@ -36,4 +37,10 @@ function detectTheme() {
       console.log(error);
     }
   );
+}
+
+let buttons = document.getElementsByClassName('ripple');
+for (let i = 0; i < buttons.length; i++) {
+  let ripple = document.createElement('mat-ripple');
+  buttons[i].appendChild(ripple);
 }

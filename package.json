@@ -27,13 +27,10 @@
     "compare-func": "^2.0.0",
     "cordova": "^10.0.0",
     "cordova-browser": "^6.0.0",
-    "css-ripple-effect": "^1.0.5",
     "human-readable-time": "^0.3.0",
+    "mat-ripple": "^1.0.3",
     "node-forge": ">=0.10.0",
     "parcel": "^1.12.4"
-  },
-  "alias": {
-    "vue": "./node_modules/vue/dist/vue.common.js"
   },
   "cordova": {
     "plugins": {
