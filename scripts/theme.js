@@ -40,7 +40,6 @@ function detectTheme() {
 }
 
 let buttons = document.getElementsByClassName('ripple');
-console.log(buttons);
 for (let i = 0; i < buttons.length; i++) {
   let ripple = document.createElement('mat-ripple');
   buttons[i].appendChild(ripple);
