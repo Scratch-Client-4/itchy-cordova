@@ -1,4 +1,13 @@
-var getParams = function(url) {
+// This file is the initialization file that runs when the search page is opened
+// Define the runtime for Regenerator-compiled generator and async functions
+import 'regenerator-runtime/runtime'
+// Import the dom object from dom.js
+const dom = require('./dom.js');
+// Import the api object from requests.js
+const api = require('./requests.js');
+// Define the function used to get URL parameters - this is external code and does not need to be documented
+// The url variable is a string
+let getParams = function(url) {
   var params = {};
   var parser = document.createElement('a');
   parser.href = url;
@@ -11,37 +20,19 @@ var getParams = function(url) {
   return params;
 };
 
+// Call the windowLoaded function once the device has loaded
+// The deviceready event is provided by Cordova
 document.addEventListener('deviceready', windowLoaded);
 
+// Define scripts to run on window load
 function windowLoaded() {
-  fetch('https://cors-anywhere.herokuapp.com/api.qwant.com/api/search/web?count=10&q=site:scratch.mit.edu%20' + getParams(window.location.href).q + '&t=site:scratch.mit.edu%20' + getParams(window.location.href).q + '&f=&offset=0&locale=en_us&uiv=4')
-    .then(response => response.json())
-    .then(data => {
-      for (let j = 0; j < 10; j++) {
-        let result = document.createElement('div');
-        result.classList.add('result');
-        result.classList.add('ripple');
-        let resultTitle = document.createElement('h4');
-        resultTitle.innerHTML = data.data.result.items[j].title;
-        result.appendChild(resultTitle);
-        let ripple = document.createElement('mat-ripple');
-        result.appendChild(ripple);
-        result.addEventListener('click', function() {
-          cordova.plugins.browsertab.openUrl(data.data.result.items[j].url);
-        });
-        document.getElementById('results').appendChild(result);
-      }
-      document.getElementsByClassName('spinner')[0].style.display = 'none';
-    });
+  api.search.general(getParams(window.location.href)[0], 0).then((response) => {
+    dom.renderSearch(response);
+  });
+  // Listen for screen orientation changes
+  // The orientation object is provided by Cordova
   screen.orientation.addEventListener('change', function() {
-    console.log('orientation changed');
-    if (screen.orientation.type.includes('landscape')) {
-      document.getElementById('projects').style.gridTemplateColumns = "auto auto";
-      document.getElementById('projects').style.gridColumnGap = "3%";
-    } else if (screen.orientation.type.includes('portrait')) {
-      document.getElementById('projects').style.gridTemplateColumns = "auto";
-      document.getElementById('projects').style.gridColumnGap = "0";
-    }
+    dom.setOrientation();
   })
   document.getElementById('searchbox').addEventListener('search', function() {
     let searchterm = document.getElementById('searchbox').value;
@@ -49,6 +40,9 @@ function windowLoaded() {
   });
 }
 
+// Listen for hardware (or native) back button press
+// The backbutton event is provided by Cordova
 document.addEventListener('backbutton', function() {
+  // Return to the app's home screen
   window.location.replace('index.html');
 });
