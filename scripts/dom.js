@@ -28,7 +28,7 @@ let renderProjects = (projectArray) => {
     divTwo.classList.add('project__title');
     divTwo.innerHTML = title + ' by <a href="#">' + user + '</a>';
     div.appendChild(divTwo);
-
+    div.appendChild(document.createElement('mat-ripple'));
     document.getElementById('projects').appendChild(div);
     div.addEventListener('click', (event) => {
       event.preventDefault();
