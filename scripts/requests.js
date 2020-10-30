@@ -170,6 +170,26 @@ let getTaggedProjects = async (tag, offset) => {
   return toReturn;
 }
 
+// Get search results from Qwant
+// The query variable must be a string
+let generalSearch = async (query, offset) => {
+  // Define the variable to store search result JSON
+  let toReturn;
+  // Make an awaiting fetch call to our personal CORS proxy but limit the results to ten (the maximum for Qwant)
+  await fetch('https://itchy-api.herokuapp.com/api.qwant.com/api/search/web?count=10&q=site:scratch.mit.edu%20' + query + '&t=site:scratch.mit.edu%20' + query + '&f=&offset=' + offset + '&locale=en_us&uiv=4')
+    // Once the response has competed
+    .then((response) => {
+      // Convert the response to JSON
+      return response.json();
+      // Once the response has been converted
+    }).then((data) => {
+      // Set toReturn equal to the returned data
+      toReturn = data;
+    });
+  // Return the toReturn variable
+  return toReturn;
+}
+
 // Export all functions
 module.exports = {
   projects: {
@@ -178,5 +198,8 @@ module.exports = {
     trending: getTrendingProjects,
     topLoved: getTopLovedProjects,
     featured: getFeaturedProjects
+  },
+  search: {
+    general: generalSearch
   }
 }

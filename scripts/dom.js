@@ -154,6 +154,37 @@ let scrollerInit = (scrollerEl) => {
   }
 }
 
+// Render search results
+// The data variable must be a JSON object returned from a Qwant API call
+let renderSearch = (data) => {
+  // Loop over the results
+  for (let i = 0; i < data.data.result.items.length; i++) {
+    // Create the parent div element to house the result
+    let result = document.createElement('div');
+    // Add result class for styling
+    result.classList.add('result');
+    // Create result title element
+    let resultTitle = document.createElement('h4');
+    // Fill in the result title from the API request
+    resultTitle.innerHTML = data.data.result.items[i].title;
+    // Place the result title inside the parent div
+    result.appendChild(resultTitle);
+    // Create a ripple effect element
+    let ripple = document.createElement('mat-ripple');
+    // Place the ripple effect element in the parent div
+    result.appendChild(ripple);
+    // Listen for clicks on the result
+    result.addEventListener('click', function() {
+      // Open a new window with the result page
+      window.open(data.data.result.items[i].url);
+    });
+    // Place the full result div inside the results section
+    document.getElementById('results').appendChild(result);
+  }
+  // Hide the loader
+  spinner.hide();
+}
+
 // Define the project object and its functions
 let projects = {
   // The rendering function
@@ -192,5 +223,6 @@ module.exports = {
   projects: projects,
   spinner: spinner,
   scroller: scroller,
-  setOrientation: orientation
+  setOrientation: orientation,
+  renderSearch: renderSearch
 };
