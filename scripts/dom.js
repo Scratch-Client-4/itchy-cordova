@@ -101,8 +101,19 @@ let scroller = {
   init: scrollerInit
 }
 
+let orientation = () => {
+  if (screen.orientation.type.includes('landscape')) {
+    document.getElementById('projects').style.gridTemplateColumns = "auto auto";
+    document.getElementById('projects').style.gridColumnGap = "3%";
+  } else if (screen.orientation.type.includes('portrait')) {
+    document.getElementById('projects').style.gridTemplateColumns = "auto";
+    document.getElementById('projects').style.gridColumnGap = "0";
+  }
+}
+
 module.exports = {
   projects: projects,
   spinner: spinner,
-  scroller: scroller
+  scroller: scroller,
+  setOrientation: orientation
 };

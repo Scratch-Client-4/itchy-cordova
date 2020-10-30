@@ -17,14 +17,7 @@ function windowLoaded() {
     window.open = cordova.plugins.browsertab.openUrl;
   }
   screen.orientation.addEventListener('change', function() {
-    console.log('orientation changed');
-    if (screen.orientation.type.includes('landscape')) {
-      document.getElementById('projects').style.gridTemplateColumns = "auto auto";
-      document.getElementById('projects').style.gridColumnGap = "3%";
-    } else if (screen.orientation.type.includes('portrait')) {
-      document.getElementById('projects').style.gridTemplateColumns = "auto";
-      document.getElementById('projects').style.gridColumnGap = "0";
-    }
+    dom.setOrientation();
   })
   dom.spinner.show();
   dom.scroller.init(scrollerEl);
