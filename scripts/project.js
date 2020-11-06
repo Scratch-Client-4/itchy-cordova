@@ -35,10 +35,19 @@ document.addEventListener('deviceready', function() {
     document.getElementById('turboRender').innerHTML = '<iframe id ="turbowarp" src="https://experiments.turbowarp.org/transparent-embeds/embed.html#' + projectId + '?hqpen" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>';
     document.querySelector('.author__pfp').src = 'https://cdn2.scratch.mit.edu/get_image/user/' + data.userId + '_60x60.png';
     document.getElementById('authorName').innerText = data.username;
-    document.getElementById('authorName').href = 'https://scratch.mit.edu/users/' + data.username;
+    document.getElementById('authorName').addEventListener('click', function() {
+      window.open('https://scratch.mit.edu/users/' + data.username);
+    });
     document.getElementById('turbowarp').addEventListener('load', function() {
       console.log(document.getElementById('turbowarp').contentDocument)
     });
     dom.spinner.hide();
   });
+});
+
+// Listen for hardware (or native) back button press
+// The backbutton event is provided by Cordova
+document.addEventListener('backbutton', function() {
+  // Return to the app's home screen
+  window.location.replace('index.html');
 });
