@@ -190,6 +190,38 @@ let generalSearch = async (query, offset) => {
   return toReturn;
 }
 
+let getSingleProject = async (id) => {
+  // Define the rawData variable
+  let rawData;
+  // Define the array of project objects to return
+  let toReturn;
+  // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
+  await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/projects/' + id)
+    // Once the response has completed
+    .then((response) => {
+      // Convert the response to JSON
+      return response.json();
+      // Once the response has been converted
+    }).then((data) => {
+      // data is equal to the result of the return statement above
+      // Set rawData equal to the response JSON
+      rawData = data;
+      // Push an object to the toReturn array
+      toReturn = {
+        // Set the id property to the project's ID
+        id: rawData['id'],
+        // Set the title property to the project's title
+        title: rawData['title'],
+        // Set the username property to the project's author
+        username: rawData['author']['username'],
+        // Set the userId property to the project's author
+        userId: rawData['author']['id']
+      };
+    });
+  // After all of the above have finished, return the toReturn project array
+  return toReturn;
+}
+
 // Export all functions
 module.exports = {
   projects: {
@@ -201,5 +233,6 @@ module.exports = {
   },
   search: {
     general: generalSearch
-  }
+  },
+  project: getSingleProject
 }

@@ -42,7 +42,7 @@ let renderProjects = (projectArray) => {
     // Add the project__title class for styling
     divTwo.classList.add('project__title');
     // Input the HTML for the title and author
-    divTwo.innerHTML = title + ' by <a href="#">' + user + '</a>';
+    divTwo.innerHTML = title + ' by <a href="#" id="' + id + '">' + user + '</a>';
     // Place the second div inside the first
     div.appendChild(divTwo);
     // Add the <mat-ripple> element for the Material ripple animation
@@ -50,11 +50,17 @@ let renderProjects = (projectArray) => {
     // Place the original parent div inside the project rendering section (a div with the ID of "projects")
     document.getElementById('projects').appendChild(div);
     // Trigger event on click
-    div.addEventListener('click', (event) => {
+    img.addEventListener('click', (event) => {
       // Prevent going to the top of the page
       event.preventDefault();
       // Open the project in a new window
-      window.open('https://scratch.mit.edu/projects/' + id);
+      window.location.replace('project.html?id=' + id);
+    })
+    document.getElementById(id).addEventListener('click', (event) => {
+      // Prevent going to the top of the page
+      event.preventDefault();
+      // Open the project in a new window
+      window.open('https://scratch.mit.edu/users/' + user);
     })
   }
   // Hide the loader - notice how we don't need to prefix this function with "dom"

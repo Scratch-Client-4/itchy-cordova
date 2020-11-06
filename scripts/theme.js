@@ -20,7 +20,7 @@ let setTheme = (toSwap) => {
   }
 }
 setTheme(window.localStorage.getItem('theme'));
-
+setTheme('dark')
 document.addEventListener('deviceready', detectTheme);
 
 function detectTheme() {

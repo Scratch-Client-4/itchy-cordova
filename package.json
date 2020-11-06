@@ -2,7 +2,7 @@
   "scripts": {
     "start": "parcel index.html --global index",
     "dev": "parcel index.html --global index",
-    "build": "parcel build index.html search.html --global  index --out-dir www --public-url ."
+    "build": "parcel build index.html search.html project.html --global  index --out-dir www --public-url ."
   },
   "devDependencies": {
     "cordova-android": "^9.0.0",
