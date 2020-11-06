@@ -4,6 +4,7 @@ import 'regenerator-runtime/runtime';
 const api = require('./requests.js');
 // Import the dom object from dom.js
 const dom = require('./dom.js');
+let offset = 0;
 // Define the function used to get URL parameters - this is external code and does not need to be documented
 // The url variable is a string
 let getParams = function(url) {
@@ -26,21 +27,30 @@ document.addEventListener('deviceready', function() {
     // Change the window.open function to open a Chrome custom tab via Cordova plugin
     window.open = cordova.plugins.browsertab.openUrl;
   }
-  api.project(projectId).then((data) => {
+  api.project.metadata(projectId).then((data) => {
     let projectTitle = data.title.length > 40 ? data.title.substring(0, 40) + '...' : data.title;
-    document.getElementById('viewScratch').addEventListener('click', function() {
-      window.open('https://scratch.mit.edu/projects/' + projectId);
-    })
     document.getElementById('projectName').innerText = projectTitle;
     document.getElementById('turboRender').innerHTML = '<iframe id ="turbowarp" src="https://experiments.turbowarp.org/transparent-embeds/embed.html#' + projectId + '?hqpen" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>';
     document.querySelector('.author__pfp').src = 'https://cdn2.scratch.mit.edu/get_image/user/' + data.userId + '_60x60.png';
+    document.querySelector('.author__pfp').addEventListener('click', function() {
+      window.open('https://scratch.mit.edu/users/' + data.username);
+    })
     document.getElementById('authorName').innerText = data.username;
     document.getElementById('authorName').addEventListener('click', function() {
       window.open('https://scratch.mit.edu/users/' + data.username);
     });
-    document.getElementById('turbowarp').addEventListener('load', function() {
-      console.log(document.getElementById('turbowarp').contentDocument)
-    });
+    api.project.comments(projectId, data.username, 0).then((comments) => {
+      dom.comments(comments);
+    })
+    document.getElementById('viewMore').addEventListener('click', function(e) {
+      e.preventDefault();
+      dom.spinner.show();
+      offset += 10;
+      api.project.comments(projectId, data.username, offset).then((comments) => {
+        dom.comments(comments);
+      })
+      dom.spinner.hide();
+    })
     dom.spinner.hide();
   });
 });

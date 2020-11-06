@@ -190,10 +190,10 @@ let generalSearch = async (query, offset) => {
   return toReturn;
 }
 
-let getSingleProject = async (id) => {
+let getProjectMetadata = async (id) => {
   // Define the rawData variable
   let rawData;
-  // Define the array of project objects to return
+  // Define the project object to return
   let toReturn;
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
   await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/projects/' + id)
@@ -206,7 +206,7 @@ let getSingleProject = async (id) => {
       // data is equal to the result of the return statement above
       // Set rawData equal to the response JSON
       rawData = data;
-      // Push an object to the toReturn array
+      // Define data to return
       toReturn = {
         // Set the id property to the project's ID
         id: rawData['id'],
@@ -218,7 +218,28 @@ let getSingleProject = async (id) => {
         userId: rawData['author']['id']
       };
     });
-  // After all of the above have finished, return the toReturn project array
+  // After all of the above have finished, return the toReturn project object
+  return toReturn;
+}
+
+let getProjectComments = async (id, username, offset) => {
+  // Define the rawData variable
+  let rawData;
+  // Define the project object to return
+  let toReturn;
+  // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
+  await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/users/' + username + '/projects/' + id + '/comments?offset=' + offset + '&limit=20')
+    // Once the response has completed
+    .then((response) => {
+      // Convert the response to JSON
+      return response.json();
+      // Once the response has been converted
+    }).then((data) => {
+      // data is equal to the result of the return statement above
+      // Set toReturn equal to the data
+      toReturn = data;
+    });
+  // After all of the above have finished, return the toReturn project object
   return toReturn;
 }
 
@@ -234,5 +255,8 @@ module.exports = {
   search: {
     general: generalSearch
   },
-  project: getSingleProject
+  project: {
+    metadata: getProjectMetadata,
+    comments: getProjectComments
+  }
 }

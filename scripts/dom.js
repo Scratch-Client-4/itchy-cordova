@@ -1,7 +1,9 @@
 // This file is a module that deals with modifying the DOM directly
 // Import API requests and formatted responses
 const api = require('./requests.js');
-
+import {
+  LongPress
+} from 'long-press-mobile';
 // Define the loader object (Material-style spinner) and its functions
 let spinner = {
   // hide the spinner by calling dom.spinner.hide()
@@ -224,11 +226,36 @@ let orientation = () => {
   }
 }
 
+let renderComments = (comments) => {
+  for (let i = 0; i < comments.length; i++) {
+    let div = document.createElement('div');
+    let content = document.createElement('p');
+    let img = document.createElement('img');
+    let ripple = document.createElement('mat-ripple');
+    img.src = comments[i].author.image;
+    content.classList.add('comments__content');
+    img.classList.add('comments__pfp');
+    img.addEventListener('click', function() {
+      window.open('https://scratch.mit.edu/users/' + comments[i].author.username);
+    })
+    div.classList.add('comments__comment');
+    content.innerHTML = comments[i].content;
+    div.appendChild(img);
+    div.appendChild(content);
+    div.appendChild(ripple);
+    document.getElementById('commentSection').appendChild(div);
+    div.addEventListener('click', function() {
+      window.open('https://scratch.mit.edu/users/' + comments[i].author.username);
+    })
+  }
+}
+
 // Export all functions
 module.exports = {
   projects: projects,
   spinner: spinner,
   scroller: scroller,
   setOrientation: orientation,
-  renderSearch: renderSearch
+  renderSearch: renderSearch,
+  comments: renderComments
 };

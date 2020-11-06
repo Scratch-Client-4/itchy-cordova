@@ -23,14 +23,17 @@
     "vue": "^2.6.11"
   },
   "dependencies": {
+    "cclick": "^1.0.6",
     "clipboard": "^2.0.6",
     "compare-func": "^2.0.0",
     "cordova": "^10.0.0",
     "cordova-browser": "^6.0.0",
     "human-readable-time": "^0.3.0",
+    "long-press-mobile": "^1.0.1",
     "mat-ripple": "^1.0.3",
     "node-forge": ">=0.10.0",
-    "parcel": "^1.12.4"
+    "parcel": "^1.12.4",
+    "web-long-press": "^1.0.3"
   },
   "cordova": {
     "plugins": {
