@@ -1,0 +1,6 @@
+{
+  "plugins": ["stylelint-postcss-ignore"],
+  "rules": {
+    "stylelint-postcss-ignore/no-wrong-line-comment": true
+  }
+}

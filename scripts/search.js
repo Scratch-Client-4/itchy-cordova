@@ -26,7 +26,7 @@ document.addEventListener('deviceready', windowLoaded);
 
 // Define scripts to run on window load
 function windowLoaded() {
-  api.search.general(getParams(window.location.href)[0], 0).then((response) => {
+  api.search.general(getParams(window.location.href).q, 0).then((response) => {
     dom.renderSearch(response);
   });
   // Listen for screen orientation changes

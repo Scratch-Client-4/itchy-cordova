@@ -1,4 +1,4 @@
-import MatRipple from 'mat-ripple';
+// import MatRipple from 'mat-ripple';
 let root = document.documentElement;
 let setTheme = (toSwap) => {
   if (toSwap == 'dark') {

@@ -2,7 +2,7 @@
   "scripts": {
     "start": "parcel index.html --global index",
     "dev": "parcel index.html --global index",
-    "build": "parcel build index.html search.html project.html --global  index --out-dir www --public-url ."
+    "build": "parcel build index.html search.html project.html ./scripts/project.js --global  index --out-dir www --public-url ."
   },
   "devDependencies": {
     "cordova-android": "^9.0.0",
@@ -19,13 +19,17 @@
     "node-forge": ">=0.10.0",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-html-externals": "^0.2.0",
+    "parcel-plugin-static-files-copy": "^2.5.0",
     "sass": "^1.26.10",
+    "stylelint": "^13.7.2",
+    "stylelint-postcss-ignore": "^0.1.0",
     "vue": "^2.6.11"
   },
   "dependencies": {
     "cclick": "^1.0.6",
     "clipboard": "^2.0.6",
     "compare-func": "^2.0.0",
+    "contexjs": "^1.0.0",
     "cordova": "^10.0.0",
     "cordova-browser": "^6.0.0",
     "human-readable-time": "^0.3.0",
@@ -51,5 +55,12 @@
   },
   "externals": {
     "./cordova.js": false
-  }
+  },
+  "staticFiles": {
+    "staticPath": [{
+            "staticPath": "asset",
+            "staticOutDir": "asset"
+          }],
+        "watcherGlob": "**"
+    }
 }

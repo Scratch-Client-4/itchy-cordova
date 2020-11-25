@@ -22,11 +22,18 @@ body {
 }
 
 .top {
-  margin-top: 10vh;
+  padding-top: 10vh;
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 1em;
-  border-bottom: solid var(--border) 0.1em;
+}
+
+.top--sticky {
+  position: sticky;
+  top: -3em;
+  z-index: 20;
+  background: var(--bg-primary);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.16);
 }
 
 #searchbox {
@@ -56,9 +63,14 @@ body {
 .result {
   width: 100%;
   border-radius: 0.5em;
-  border: solid var(--border) 2px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.16);
   margin-bottom: 1em;
   max-width: 480px;
+  transition: 0.2s;
+  &:active {
+    transform: scale(0.98);
+    transition: 0.2s;
+  }
 }
 
 #not-found {

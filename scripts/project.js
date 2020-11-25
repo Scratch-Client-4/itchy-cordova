@@ -51,6 +51,16 @@ document.addEventListener('deviceready', function() {
       })
       dom.spinner.hide();
     })
+    document.getElementById('toggleComments').addEventListener('click', function() {
+      let slider = document.getElementById('slider');
+      if (slider.classList.contains('slideout--out')) {
+        slider.classList.replace('slideout--out', 'slideout--in');
+        document.querySelector('.fab__icon').src = './asset/icon-close.svg';
+      } else {
+        slider.classList.replace('slideout--in', 'slideout--out');
+        document.querySelector('.fab__icon').src = './asset/icon-comment.svg';
+      }
+    })
     dom.spinner.hide();
   });
 });
