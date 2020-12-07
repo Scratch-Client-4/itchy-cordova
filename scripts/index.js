@@ -12,7 +12,6 @@ document.getElementById('menuButton').addEventListener('click', (event) => {
   // Prevent going to top of page
   event.preventDefault();
 });
-
 // Call the windowLoaded function once the device has loaded
 // The deviceready event is provided by Cordova
 document.addEventListener('deviceready', windowLoaded);
@@ -45,5 +44,5 @@ function windowLoaded() {
   api.projects.featured(0).then((data) => {
     // Once that has completed, render the projects via the dom module
     dom.projects.render(data);
-  })
+  });
 }

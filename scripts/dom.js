@@ -96,6 +96,7 @@ let scrollerInit = (scrollerEl) => {
         // The following 5 if statements are for specific, non-tag options
         // If the selected option is the "Featured" option
         if (scrollOptions[i].innerText == 'Featured') {
+          let projectOffset = 0;
           // Show the loader
           spinner.show();
           // Use the API request module to get featured projects
@@ -107,6 +108,7 @@ let scrollerInit = (scrollerEl) => {
           });
           // If the selected option is the "Top Loved" option
         } else if (scrollOptions[i].innerText == 'Top Loved') {
+          let projectOffset = 0;
           // Show the loader
           spinner.show();
           // Use the API request module to get top loved projects
@@ -148,18 +150,29 @@ let scrollerInit = (scrollerEl) => {
           spinner.hide();
           // If the selected option is none of the above
         } else {
+          let projectOffset = 0;
           // Show the loader
           spinner.show();
           // Use the API request module to get projects tagged with the value of the option's innerText
           api.projects.tagged(scrollOptions[i].innerText.toLowerCase(), 0).then((data) => {
+            projectOffset += data.length;
             // After the result has been recieved, render the projects
             projects.render(data);
             // Hide the loader
             spinner.hide();
+            window.addEventListener('scroll', function(event) {
+              if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                console.log('bottom');
+                api.projects.tagged(scrollOptions[i].innerText.toLowerCase(), projectOffset).then((data) => {
+                  projectOffset += data.length;
+                  projects.render(data);
+                });
+              }
+            });
           });
         }
       }
-    })
+    });
   }
 }
 

@@ -7,6 +7,7 @@ let getFeaturedProjects = async (offset) => {
   // Define the array of project objects to return
   let toReturn = [];
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
+  console.log(offset);
   await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/proxy/featured?offset=' + offset + '&limit=20')
     // Once the response has completed
     .then((response) => {

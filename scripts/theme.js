@@ -24,19 +24,30 @@ setTheme('dark')
 document.addEventListener('deviceready', detectTheme);
 
 function detectTheme() {
-  cordova.plugins.ThemeDetection.isDarkModeEnabled(
-    function(success) {
-      console.log(success.message);
-      if (success.value) {
-        setTheme('dark');
-      } else {
-        setTheme('light');
+  if (device.platform == "Android") {
+    cordova.plugins.ThemeDetection.isDarkModeEnabled(
+      function(success) {
+        console.log(success.message);
+        if (success.value) {
+          setTheme('dark');
+        } else {
+          setTheme('light');
+        }
+      },
+      function(error) {
+        console.log(error);
       }
-    },
-    function(error) {
-      console.log(error);
+    );
+  } else {
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const userPrefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (userPrefersDark) {
+      setTheme('dark');
     }
-  );
+    if (userPrefersLight) {
+      setTheme('light');
+    }
+  }
 }
 
 let buttons = document.getElementsByClassName('ripple');
