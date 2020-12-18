@@ -1,14 +1,15 @@
 // This file is a module that not only handles requests to the Scratch API, but also formats the results into useful data to be rendered by the dom.js module
 // All of the functions here are asynchronous because we have to wait until a request is finished to send the result
+let root = 'https://itchy-api.vercel.app';
+root = 'http://localhost:3000';
 // Get featured projects - the offset variable is the offset to send to the API endpoint
-let getFeaturedProjects = async (offset) => {
+let getFeaturedProjects = async () => {
   // Define the rawData variable
   let rawData;
   // Define the array of project objects to return
   let toReturn = [];
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
-  console.log(offset);
-  await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/proxy/featured?offset=' + offset + '&limit=20')
+  await fetch(`${root}/api/frontpage?p=featured`)
     // Once the response has completed
     .then((response) => {
       // Convert the response to JSON
@@ -23,11 +24,11 @@ let getFeaturedProjects = async (offset) => {
         // Push an object to the toReturn array
         toReturn.push({
           // Set the id property to the project's ID
-          id: rawData["community_featured_projects"][i]['id'],
+          id: data[i]['id'],
           // Set the title property to the project's title
-          title: rawData["community_featured_projects"][i]['title'],
+          title: data[i]['title'],
           // Set the creator property to the project's author
-          user: rawData["community_featured_projects"][i]['creator']
+          user: data[i]['creator']
         });
       }
     });
@@ -36,13 +37,13 @@ let getFeaturedProjects = async (offset) => {
 }
 
 // Get top loved projects - the offset variable is the offset to send to the API endpoint
-let getTopLovedProjects = async (offset) => {
+let getTopLovedProjects = async () => {
   // Define the rawData variable
   let rawData;
   // Define the array of project objects to return
   let toReturn = [];
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
-  await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/proxy/featured?offset=' + offset + '&limit=20')
+  await fetch(`${root}/api/frontpage?p=toploved`)
     // Once the response has completed
     .then((response) => {
       // Convert the response to JSON
@@ -57,11 +58,11 @@ let getTopLovedProjects = async (offset) => {
         // Push an object to the toReturn array
         toReturn.push({
           // Set the id property to the project's ID
-          id: rawData["community_most_loved_projects"][i]['id'],
+          id: data[i]['id'],
           // Set the title property to the project's title
-          title: rawData["community_most_loved_projects"][i]['title'],
+          title: data[i]['title'],
           // Set the creator property to the project's author
-          user: rawData["community_most_loved_projects"][i]['creator']
+          user: data[i]['creator']
         });
       }
     });
@@ -71,12 +72,13 @@ let getTopLovedProjects = async (offset) => {
 
 // Get currently trending projects - the offset variable is the offset to send to the API endpoint
 let getTrendingProjects = async (offset) => {
+  offset = offset || 0;
   // Define the rawData variable
   let rawData;
   // Define the array of project objects to return
   let toReturn = [];
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
-  await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/explore/projects?offset=' + offset + '&limit=20&mode=trending')
+  await fetch(`${root}/api/explore?offset=${offset}`)
     // Once the response has completed
     .then((response) => {
       // Convert the response to JSON
@@ -105,12 +107,13 @@ let getTrendingProjects = async (offset) => {
 
 // Get recently shared projects - the offset variable is the offset to send to the API endpoint
 let getRecentProjects = async (offset) => {
+  offset = offset || 0;
   // Define the rawData variable
   let rawData;
   // Define the array of project objects to return
   let toReturn = [];
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
-  await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/explore/projects?offset=' + offset + '&limit=20&mode=recent')
+  await fetch(`${root}/api/explore?mode=recent&offset=${offset}`)
     // Once the response has completed
     .then((response) => {
       // Convert the response to JSON
@@ -139,12 +142,13 @@ let getRecentProjects = async (offset) => {
 
 // Get projects of a certain tag - the offset variable is the offset to send to the API endpoint
 let getTaggedProjects = async (tag, offset) => {
+  offset = offset || 0;
   // Define the rawData variable
   let rawData;
   // Define the array of project objects to return
   let toReturn = [];
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
-  await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/explore/projects?q=' + tag + "&offset=" + offset + '&limit=20&mode=trending')
+  await fetch(`${root}/api/explore?offset=${offset}&tag=${tag}`)
     // Once the response has completed
     .then((response) => {
       // Convert the response to JSON
@@ -174,10 +178,11 @@ let getTaggedProjects = async (tag, offset) => {
 // Get search results from Qwant
 // The query variable must be a string
 let generalSearch = async (query, offset) => {
+  offset = offset || 0;
   // Define the variable to store search result JSON
   let toReturn;
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to ten (the maximum for Qwant)
-  await fetch('https://itchy-api.herokuapp.com/api.qwant.com/api/search/web?count=10&q=site:scratch.mit.edu%20' + query + '&t=site:scratch.mit.edu%20' + query + '&f=&offset=' + offset + '&locale=en_us&uiv=4')
+  await fetch(`${root}/api/search?q=${query}&offset=${offset}`)
     // Once the response has competed
     .then((response) => {
       // Convert the response to JSON
@@ -197,7 +202,7 @@ let getProjectMetadata = async (id) => {
   // Define the project object to return
   let toReturn;
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
-  await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/projects/' + id)
+  await fetch(`${root}/api/project?id=${id}`)
     // Once the response has completed
     .then((response) => {
       // Convert the response to JSON
@@ -223,13 +228,14 @@ let getProjectMetadata = async (id) => {
   return toReturn;
 }
 
-let getProjectComments = async (id, username, offset) => {
+let getProjectComments = async (id, offset) => {
+  offset = offset || 0;
   // Define the rawData variable
   let rawData;
   // Define the project object to return
   let toReturn;
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
-  await fetch('https://itchy-api.herokuapp.com/api.scratch.mit.edu/users/' + username + '/projects/' + id + '/comments?offset=' + offset + '&limit=20')
+  await fetch(`${root}/api/project?comments=true&commentoffset=${offset}&id=${id}`)
     // Once the response has completed
     .then((response) => {
       // Convert the response to JSON

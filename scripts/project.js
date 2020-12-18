@@ -39,14 +39,14 @@ document.addEventListener('deviceready', function() {
     document.getElementById('authorName').addEventListener('click', function() {
       window.open('https://scratch.mit.edu/users/' + data.username);
     });
-    api.project.comments(projectId, data.username, 0).then((comments) => {
+    api.project.comments(projectId, 0).then((comments) => {
       dom.comments(comments);
     })
     document.getElementById('viewMore').addEventListener('click', function(e) {
       e.preventDefault();
       dom.spinner.show();
       offset += 10;
-      api.project.comments(projectId, data.username, offset).then((comments) => {
+      api.project.comments(projectId, offset).then((comments) => {
         dom.comments(comments);
       })
       dom.spinner.hide();
