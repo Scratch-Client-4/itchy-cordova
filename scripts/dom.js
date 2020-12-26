@@ -1,7 +1,10 @@
 // This file is a module that deals with modifying the DOM directly
 // Import API requests and formatted responses
 const api = require('./requests.js');
-
+import {
+  LongPress
+} from 'long-press-mobile';
+import * as Contex from 'contexjs';
 // Define the loader object (Material-style spinner) and its functions
 let spinner = {
   // hide the spinner by calling dom.spinner.hide()
@@ -42,7 +45,7 @@ let renderProjects = (projectArray) => {
     // Add the project__title class for styling
     divTwo.classList.add('project__title');
     // Input the HTML for the title and author
-    divTwo.innerHTML = title + ' by <a href="#">' + user + '</a>';
+    divTwo.innerHTML = title + ' by <a href="#" id="' + id + '">' + user + '</a>';
     // Place the second div inside the first
     div.appendChild(divTwo);
     // Add the <mat-ripple> element for the Material ripple animation
@@ -50,11 +53,17 @@ let renderProjects = (projectArray) => {
     // Place the original parent div inside the project rendering section (a div with the ID of "projects")
     document.getElementById('projects').appendChild(div);
     // Trigger event on click
-    div.addEventListener('click', (event) => {
+    img.addEventListener('click', (event) => {
       // Prevent going to the top of the page
       event.preventDefault();
       // Open the project in a new window
-      window.open('https://scratch.mit.edu/projects/' + id);
+      window.location.replace('project.html?id=' + id);
+    })
+    document.getElementById(id).addEventListener('click', (event) => {
+      // Prevent going to the top of the page
+      event.preventDefault();
+      // Open the user in a new window
+      window.location.replace('user.html?u=' + user);
     })
   }
   // Hide the loader - notice how we don't need to prefix this function with "dom"
@@ -87,6 +96,7 @@ let scrollerInit = (scrollerEl) => {
         // The following 5 if statements are for specific, non-tag options
         // If the selected option is the "Featured" option
         if (scrollOptions[i].innerText == 'Featured') {
+          let projectOffset = 0;
           // Show the loader
           spinner.show();
           // Use the API request module to get featured projects
@@ -98,6 +108,7 @@ let scrollerInit = (scrollerEl) => {
           });
           // If the selected option is the "Top Loved" option
         } else if (scrollOptions[i].innerText == 'Top Loved') {
+          let projectOffset = 0;
           // Show the loader
           spinner.show();
           // Use the API request module to get top loved projects
@@ -139,18 +150,29 @@ let scrollerInit = (scrollerEl) => {
           spinner.hide();
           // If the selected option is none of the above
         } else {
+          let projectOffset = 0;
           // Show the loader
           spinner.show();
           // Use the API request module to get projects tagged with the value of the option's innerText
           api.projects.tagged(scrollOptions[i].innerText.toLowerCase(), 0).then((data) => {
+            projectOffset += data.length;
             // After the result has been recieved, render the projects
             projects.render(data);
             // Hide the loader
             spinner.hide();
+            window.addEventListener('scroll', function(event) {
+              if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                console.log('bottom');
+                api.projects.tagged(scrollOptions[i].innerText.toLowerCase(), projectOffset).then((data) => {
+                  projectOffset += data.length;
+                  projects.render(data);
+                });
+              }
+            });
           });
         }
       }
-    })
+    });
   }
 }
 
@@ -158,7 +180,7 @@ let scrollerInit = (scrollerEl) => {
 // The data variable must be a JSON object returned from a Qwant API call
 let renderSearch = (data) => {
   // Loop over the results
-  for (let i = 0; i < data.data.result.items.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     // Create the parent div element to house the result
     let result = document.createElement('div');
     // Add result class for styling
@@ -166,7 +188,7 @@ let renderSearch = (data) => {
     // Create result title element
     let resultTitle = document.createElement('h4');
     // Fill in the result title from the API request
-    resultTitle.innerHTML = data.data.result.items[i].title;
+    resultTitle.innerHTML = data[i].title;
     // Place the result title inside the parent div
     result.appendChild(resultTitle);
     // Create a ripple effect element
@@ -176,7 +198,7 @@ let renderSearch = (data) => {
     // Listen for clicks on the result
     result.addEventListener('click', function() {
       // Open a new window with the result page
-      window.open(data.data.result.items[i].url);
+      window.open(data[i].url);
     });
     // Place the full result div inside the results section
     document.getElementById('results').appendChild(result);
@@ -218,11 +240,74 @@ let orientation = () => {
   }
 }
 
+let renderComments = (comments) => {
+  // loop through comments array
+  for (let i = 0; i < comments.length; i++) {
+    // define a parent div
+    let div = document.createElement('div');
+    // define the comment content
+    let content = document.createElement('p');
+    // define the image for the profile picture
+    let img = document.createElement('img');
+    // define the ripple element for animations
+    let ripple = document.createElement('mat-ripple');
+    img.src = comments[i].author.image;
+    content.classList.add('comments__content');
+    img.classList.add('comments__pfp');
+    img.addEventListener('click', function() {
+      window.location.replace('user.html?u=' + comments[i].author.username);
+    });
+    div.classList.add('comments__comment');
+    content.innerHTML = comments[i].content;
+    div.id = "comment-" + comments[i].id;
+    div.appendChild(img);
+    div.appendChild(content);
+    div.appendChild(ripple);
+    document.getElementById('commentSection').appendChild(div);
+    div.addEventListener('click', function() {
+      window.location.replace('user.html?u=' + comments[i].author.username);
+    })
+  }
+}
+
+let importLinks = (string) => {
+  let toReturn = "";
+  string.split(/\s/).forEach((word) => {
+    if (word[0] == "@") {
+      console.log("Found a mention");
+      const USERNAME_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_";
+      let mentionName = "";
+      let i = 1;
+      while (USERNAME_CHARS.includes(word[i])) {
+        mentionName += word[i];
+        i++;
+      }
+      let afterName = word.slice(i);
+      const link = '<a class="mention" href="user.html?u=' + mentionName + '">@' + mentionName + "</a>"; // creates a link relevant to the user
+      toReturn = toReturn + link + afterName + " ";
+    } else if (word.startsWith("https://") || word.startsWith("http://")) {
+      const link = '<a class="mention" target="_blank" href="' + word + '">' + word + "</a> "; // creates a link
+      toReturn = toReturn + link;
+    } else if (word[0] == "#") {
+      const link = '<a class="mention" target="" href="/chat?r=' + word.substring(1, word.length) + '">' + word + "</a> "; // creates a link relevant to the room
+      toReturn = toReturn + link;
+    } else if (word == '\n') {
+      toReturn = toReturn + "<br>";
+    } else {
+      toReturn = toReturn + word + " ";
+    }
+  })
+  console.log(toReturn);
+  return toReturn;
+}
+
 // Export all functions
 module.exports = {
   projects: projects,
   spinner: spinner,
   scroller: scroller,
   setOrientation: orientation,
-  renderSearch: renderSearch
+  renderSearch: renderSearch,
+  comments: renderComments,
+  makeLinks: importLinks
 };

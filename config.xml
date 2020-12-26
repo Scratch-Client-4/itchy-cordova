@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.scratchclient4.sc4mobile" version="0.2.0" android-versionCode="9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="9" id="org.scratchclient4.sc4mobile" version="0.4.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Itchy</name>
     <description>
         A Scratch client for Android mobile devices.
@@ -8,7 +8,6 @@
         The Scratch Client 4 Contributors
     </author>
     <content src="index.html" />
-    <!-- Note : Portrait orientation is voluntarily not enforced. -->
     <preference name="target-device" value="handset" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="22" />
@@ -20,13 +19,41 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="FadeSplashScreen" value="true" />
     <platform name="android">
-      <icon background="resources/android/icon/ldpi-background.png" density="ldpi" foreground="resources/android/icon/ldpi-foreground.png" src="resources/android/icon/drawable-ldpi-icon.png" />
-      <icon background="resources/android/icon/mdpi-background.png" density="mdpi" foreground="resources/android/icon/mdpi-foreground.png" src="resources/android/icon/drawable-mdpi-icon.png" />
-      <icon background="resources/android/icon/hdpi-background.png" density="hdpi" foreground="resources/android/icon/hdpi-foreground.png" src="resources/android/icon/drawable-hdpi-icon.png" />
-      <icon background="resources/android/icon/xhdpi-background.png" density="xhdpi" foreground="resources/android/icon/xhdpi-foreground.png" src="resources/android/icon/drawable-xhdpi-icon.png" />
-      <icon background="resources/android/icon/xxhdpi-background.png" density="xxhdpi" foreground="resources/android/icon/xxhdpi-foreground.png" src="resources/android/icon/drawable-xxhdpi-icon.png" />
-      <icon background="resources/android/icon/xxxhdpi-background.png" density="xxxhdpi" foreground="resources/android/icon/xxxhdpi-foreground.png" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
-      <allow-intent href="market:*" />
+        <icon background="resources/android/icon/ldpi-background.png" density="ldpi" foreground="resources/android/icon/ldpi-foreground.png" src="resources/android/icon/drawable-ldpi-icon.png" />
+        <icon background="resources/android/icon/mdpi-background.png" density="mdpi" foreground="resources/android/icon/mdpi-foreground.png" src="resources/android/icon/drawable-mdpi-icon.png" />
+        <icon background="resources/android/icon/hdpi-background.png" density="hdpi" foreground="resources/android/icon/hdpi-foreground.png" src="resources/android/icon/drawable-hdpi-icon.png" />
+        <icon background="resources/android/icon/xhdpi-background.png" density="xhdpi" foreground="resources/android/icon/xhdpi-foreground.png" src="resources/android/icon/drawable-xhdpi-icon.png" />
+        <icon background="resources/android/icon/xxhdpi-background.png" density="xxhdpi" foreground="resources/android/icon/xxhdpi-foreground.png" src="resources/android/icon/drawable-xxhdpi-icon.png" />
+        <icon background="resources/android/icon/xxxhdpi-background.png" density="xxxhdpi" foreground="resources/android/icon/xxxhdpi-foreground.png" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
+        <allow-intent href="market:*" />
+        <splash density="land-ldpi" src="resources/android/splash/drawable-land-ldpi-screen.png" />
+        <splash density="land-mdpi" src="resources/android/splash/drawable-land-mdpi-screen.png" />
+        <splash density="land-hdpi" src="resources/android/splash/drawable-land-hdpi-screen.png" />
+        <splash density="land-xhdpi" src="resources/android/splash/drawable-land-xhdpi-screen.png" />
+        <splash density="land-xxhdpi" src="resources/android/splash/drawable-land-xxhdpi-screen.png" />
+        <splash density="land-xxxhdpi" src="resources/android/splash/drawable-land-xxxhdpi-screen.png" />
+        <splash density="port-ldpi" src="resources/android/splash/drawable-port-ldpi-screen.png" />
+        <splash density="port-mdpi" src="resources/android/splash/drawable-port-mdpi-screen.png" />
+        <splash density="port-hdpi" src="resources/android/splash/drawable-port-hdpi-screen.png" />
+        <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
+        <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
+        <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <!-- Dark mode splashes -->
+        <splash density="land-night-ldpi" src="resources/android/splash/night/drawable-land-ldpi-screen.png" />
+        <splash density="land-night-mdpi" src="resources/android/splash/night/drawable-land-mdpi-screen.png" />
+        <splash density="land-night-hdpi" src="resources/android/splash/night/drawable-land-hdpi-screen.png" />
+        <splash density="land-night-xhdpi" src="resources/android/splash/night/drawable-land-xhdpi-screen.png" />
+        <splash density="land-night-xxhdpi" src="resources/android/splash/night/drawable-land-xxhdpi-screen.png" />
+        <splash density="land-night-xxxhdpi" src="resources/android/splash/night/drawable-land-xxxhdpi-screen.png" />
+        <splash density="port-night-ldpi" src="resources/android/splash/night/drawable-port-ldpi-screen.png" />
+        <splash density="port-night-mdpi" src="resources/android/splash/night/drawable-port-mdpi-screen.png" />
+        <splash density="port-night-hdpi" src="resources/android/splash/night/drawable-port-hdpi-screen.png" />
+        <splash density="port-night-xhdpi" src="resources/android/splash/night/drawable-port-xhdpi-screen.png" />
+        <splash density="port-night-xxhdpi" src="resources/android/splash/night/drawable-port-xxhdpi-screen.png" />
+        <splash density="port-night-xxxhdpi" src="resources/android/splash/night/drawable-port-xxxhdpi-screen.png" />
+        <preference name="ShowSplashScreenSpinner" value="false" />
     </platform>
 </widget>

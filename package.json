@@ -2,7 +2,8 @@
   "scripts": {
     "start": "parcel index.html --global index",
     "dev": "parcel index.html --global index",
-    "build": "parcel build index.html search.html --global  index --out-dir www --public-url ."
+    "build": "parcel build index.html search.html project.html user.html ./scripts/project.js --global  index --out-dir www --public-url .",
+    "genDarkSplashes": "cordova-res android --skip-config --splash-source ./resources/android/splash-night.jpg --type splash --resources ./resources/android/splash && mv ./resources/android/splash/android/splash/* ./resources/android/splash/night && rmdir ./resources/android/splash/android/splash && rmdir ./resources/android/splash/android"
   },
   "devDependencies": {
     "cordova-android": "^9.0.0",
@@ -11,26 +12,39 @@
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-inappbrowser": "^4.0.0",
     "cordova-plugin-screen-orientation": "^3.0.2",
+    "cordova-plugin-splashscreen": "^6.0.0",
     "cordova-plugin-theme-detection": "^1.2.1",
     "cordova-plugin-whitelist": "^1.3.4",
+    "cordova-res": "^0.15.2",
     "cssnano": "^4.1.10",
     "es6-promise-plugin": "^4.2.2",
     "less": "^3.12.2",
     "node-forge": ">=0.10.0",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-html-externals": "^0.2.0",
+    "parcel-plugin-static-files-copy": "^2.5.0",
     "sass": "^1.26.10",
-    "vue": "^2.6.11"
+    "stylelint": "^13.7.2",
+    "stylelint-postcss-ignore": "^0.1.0",
+    "vue": "^2.6.11",
+    "worker-loader": "^3.0.6"
   },
   "dependencies": {
+    "@vibrant/worker": "^3.2.1-alpha.1",
+    "cclick": "^1.0.6",
     "clipboard": "^2.0.6",
     "compare-func": "^2.0.0",
+    "contexjs": "^1.0.0",
     "cordova": "^10.0.0",
     "cordova-browser": "^6.0.0",
     "human-readable-time": "^0.3.0",
+    "long-press-mobile": "^1.0.1",
     "mat-ripple": "^1.0.3",
     "node-forge": ">=0.10.0",
-    "parcel": "^1.12.4"
+    "node-vibrant": "^3.1.6",
+    "parcel": "^1.12.4",
+    "string.prototype.replaceall": "^1.0.4",
+    "web-long-press": "^1.0.3"
   },
   "cordova": {
     "plugins": {
@@ -39,7 +53,8 @@
       "cordova-plugin-device": {},
       "cordova-plugin-browsertab": {},
       "cordova-plugin-theme-detection": {},
-      "cordova-plugin-screen-orientation": {}
+      "cordova-plugin-screen-orientation": {},
+      "cordova-plugin-splashscreen": {}
     },
     "platforms": [
       "browser",
@@ -48,5 +63,14 @@
   },
   "externals": {
     "./cordova.js": false
+  },
+  "staticFiles": {
+    "staticPath": [
+      {
+        "staticPath": "asset",
+        "staticOutDir": "asset"
+      }
+    ],
+    "watcherGlob": "**"
   }
 }

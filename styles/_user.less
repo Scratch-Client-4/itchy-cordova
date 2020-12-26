@@ -1,0 +1,41 @@
+.user {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  width: max-content;
+
+  .user__pfp {
+    border-radius: 0.7em;
+    width: 15vw;
+    height: 15vw;
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .user__name {
+    font-weight: bold;
+    font-size: 1.5em;
+    float: right;
+    margin-left: 0.5em;
+    margin-right: 1.2em;
+  }
+}
+
+.user-about {
+  padding: 1em;
+  .user-about__title {
+    font-size: 1.1em;
+    font-weight: bold;
+    padding-bottom: 0.4em;
+  }
+  .user-about__box {
+    padding: 0.55em;
+    border-radius: .5em;
+    max-height: 15vh;
+    overflow: scroll;
+    .mention {
+      color: white;
+      font-weight: bold;
+    }
+  }
+}

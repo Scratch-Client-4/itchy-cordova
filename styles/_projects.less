@@ -1,3 +1,8 @@
+* {
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
 #projects {
   margin-top: 1em;
   padding-left: 5%;
@@ -19,5 +24,21 @@
 
   a {
     color: var(--accent);
+  }
+}
+
+.project__wrapper {
+  .project__render {
+    position: relative;
+    width: 100%;
+    padding-bottom: 80%;
+    overflow: hidden;
+    iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
   }
 }

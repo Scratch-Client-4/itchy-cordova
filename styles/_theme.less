@@ -22,11 +22,18 @@ body {
 }
 
 .top {
-  margin-top: 10vh;
+  padding-top: 10vh;
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 1em;
-  border-bottom: solid var(--border) 0.1em;
+}
+
+.top--sticky {
+  position: sticky;
+  top: -3em;
+  z-index: 20;
+  background: var(--bg-primary);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.16);
 }
 
 #searchbox {
@@ -46,19 +53,25 @@ body {
     appearance: none;
   }
   &::placeholder {
-    color: var(--border);
+    color: var(--text);
     font-family: 'Inter', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
+    opacity: 0.3;
   }
 }
 
 .project,
 .result {
-  width: 100%;
+  width: 90vw;
   border-radius: 0.5em;
-  border: solid var(--border) 2px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.16);
   margin-bottom: 1em;
   max-width: 480px;
+  transition: 0.2s;
+  &:active {
+    transform: scale(0.98);
+    transition: 0.2s;
+  }
 }
 
 #not-found {
@@ -72,4 +85,20 @@ body {
   width: 1em;
   fill: var(--accent) !important;
   padding-right: 0.25em;
+}
+
+.error {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  padding-top: 1.2em;
+  
+  .error__msg {
+    text-align: center;
+    width: max-content;
+    margin: auto;
+    font-weight: bold;
+    font-size: 1.2em;
+    opacity: 0.4;
+  }
 }

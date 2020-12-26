@@ -12,7 +12,6 @@ document.getElementById('menuButton').addEventListener('click', (event) => {
   // Prevent going to top of page
   event.preventDefault();
 });
-
 // Call the windowLoaded function once the device has loaded
 // The deviceready event is provided by Cordova
 document.addEventListener('deviceready', windowLoaded);
@@ -32,6 +31,10 @@ function windowLoaded() {
   })
   // Show the loader
   dom.spinner.show();
+  // Hide splash screen
+  window.setTimeout(() => {
+    navigator.splashscreen.hide();
+  }, 200);
   // Initialize the tag scroller
   dom.scroller.init(scrollerEl);
   // Listen for searches (pressing enter while searchbox element is focused)
@@ -45,5 +48,5 @@ function windowLoaded() {
   api.projects.featured(0).then((data) => {
     // Once that has completed, render the projects via the dom module
     dom.projects.render(data);
-  })
+  });
 }
