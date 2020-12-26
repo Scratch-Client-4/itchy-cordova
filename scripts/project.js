@@ -33,12 +33,10 @@ document.addEventListener('deviceready', function() {
     document.getElementById('turboRender').innerHTML = '<iframe id ="turbowarp" src="https://experiments.turbowarp.org/transparent-embeds/embed.html#' + projectId + '?hqpen" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>';
     document.querySelector('.author__pfp').src = 'https://cdn2.scratch.mit.edu/get_image/user/' + data.userId + '_60x60.png';
     document.querySelector('.author__pfp').addEventListener('click', function() {
-      window.open('https://scratch.mit.edu/users/' + data.username);
+      window.location.replace('user.html?u=' + data.username);
     })
     document.getElementById('authorName').innerText = data.username;
-    document.getElementById('authorName').addEventListener('click', function() {
-      window.open('https://scratch.mit.edu/users/' + data.username);
-    });
+    document.getElementById('authorName').setAttribute('href', 'user.html?u=' + data.username);
     api.project.comments(projectId, 0).then((comments) => {
       dom.comments(comments);
     })

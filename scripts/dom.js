@@ -62,8 +62,8 @@ let renderProjects = (projectArray) => {
     document.getElementById(id).addEventListener('click', (event) => {
       // Prevent going to the top of the page
       event.preventDefault();
-      // Open the project in a new window
-      window.open('https://scratch.mit.edu/users/' + user);
+      // Open the user in a new window
+      window.location.replace('user.html?u=' + user);
     })
   }
   // Hide the loader - notice how we don't need to prefix this function with "dom"
@@ -255,7 +255,7 @@ let renderComments = (comments) => {
     content.classList.add('comments__content');
     img.classList.add('comments__pfp');
     img.addEventListener('click', function() {
-      window.open('https://scratch.mit.edu/users/' + comments[i].author.username);
+      window.location.replace('user.html?u=' + comments[i].author.username);
     });
     div.classList.add('comments__comment');
     content.innerHTML = comments[i].content;
@@ -265,9 +265,40 @@ let renderComments = (comments) => {
     div.appendChild(ripple);
     document.getElementById('commentSection').appendChild(div);
     div.addEventListener('click', function() {
-      window.open('https://scratch.mit.edu/users/' + comments[i].author.username);
+      window.location.replace('user.html?u=' + comments[i].author.username);
     })
   }
+}
+
+let importLinks = (string) => {
+  let toReturn = "";
+  string.split(/\s/).forEach((word) => {
+    if (word[0] == "@") {
+      console.log("Found a mention");
+      const USERNAME_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_";
+      let mentionName = "";
+      let i = 1;
+      while (USERNAME_CHARS.includes(word[i])) {
+        mentionName += word[i];
+        i++;
+      }
+      let afterName = word.slice(i);
+      const link = '<a class="mention" href="user.html?u=' + mentionName + '">@' + mentionName + "</a>"; // creates a link relevant to the user
+      toReturn = toReturn + link + afterName + " ";
+    } else if (word.startsWith("https://") || word.startsWith("http://")) {
+      const link = '<a class="mention" target="_blank" href="' + word + '">' + word + "</a> "; // creates a link
+      toReturn = toReturn + link;
+    } else if (word[0] == "#") {
+      const link = '<a class="mention" target="" href="/chat?r=' + word.substring(1, word.length) + '">' + word + "</a> "; // creates a link relevant to the room
+      toReturn = toReturn + link;
+    } else if (word == '\n') {
+      toReturn = toReturn + "<br>";
+    } else {
+      toReturn = toReturn + word + " ";
+    }
+  })
+  console.log(toReturn);
+  return toReturn;
 }
 
 // Export all functions
@@ -277,5 +308,6 @@ module.exports = {
   scroller: scroller,
   setOrientation: orientation,
   renderSearch: renderSearch,
-  comments: renderComments
+  comments: renderComments,
+  makeLinks: importLinks
 };

@@ -31,6 +31,10 @@ function windowLoaded() {
   })
   // Show the loader
   dom.spinner.show();
+  // Hide splash screen
+  window.setTimeout(() => {
+    navigator.splashscreen.hide();
+  }, 200);
   // Initialize the tag scroller
   dom.scroller.init(scrollerEl);
   // Listen for searches (pressing enter while searchbox element is focused)

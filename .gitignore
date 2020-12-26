@@ -8,3 +8,5 @@ platforms
 plugins
 dist
 master
+resources/android/icon
+resources/android/splash

@@ -1,7 +1,7 @@
 // This file is a module that not only handles requests to the Scratch API, but also formats the results into useful data to be rendered by the dom.js module
 // All of the functions here are asynchronous because we have to wait until a request is finished to send the result
 let root = 'https://itchy-api.vercel.app';
-root = 'http://localhost:3000';
+// root = 'http://localhost:3000'; // for development, see micahlt/itchy-api on GitHub
 // Get featured projects - the offset variable is the offset to send to the API endpoint
 let getFeaturedProjects = async () => {
   // Define the rawData variable
@@ -9,7 +9,7 @@ let getFeaturedProjects = async () => {
   // Define the array of project objects to return
   let toReturn = [];
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
-  await fetch(`${root}/api/frontpage?p=featured`)
+  await fetch(`${root}/api/frontpage?page=featured`)
     // Once the response has completed
     .then((response) => {
       // Convert the response to JSON
@@ -43,7 +43,7 @@ let getTopLovedProjects = async () => {
   // Define the array of project objects to return
   let toReturn = [];
   // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
-  await fetch(`${root}/api/frontpage?p=toploved`)
+  await fetch(`${root}/api/frontpage?page=toploved`)
     // Once the response has completed
     .then((response) => {
       // Convert the response to JSON
@@ -250,6 +250,46 @@ let getProjectComments = async (id, offset) => {
   return toReturn;
 }
 
+let getUserPage = async (username) => {
+  // Define the rawData variable
+  let rawData;
+  // Define the array of project objects to return
+  let toReturn = [];
+  // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
+  await fetch(`${root}/api/user?user=${username}`)
+    // Once the response has completed
+    .then((response) => {
+      // Convert the response to JSON
+      return response.json();
+      // Once the response has been converted
+    }).then((data) => {
+      // data is equal to the result of the return statement above
+      toReturn = data;
+    });
+  // After all of the above have finished, return the toReturn project array
+  return toReturn;
+}
+
+let getUserComments = async (username, offset) => {
+  // Define the rawData variable
+  let rawData;
+  // Define the array of project objects to return
+  let toReturn = [];
+  // Make an awaiting fetch call to our personal CORS proxy but limit the results to twenty
+  await fetch(`${root}/api/user?user=${username}&comments=true`)
+    // Once the response has completed
+    .then((response) => {
+      // Convert the response to JSON
+      return response.json();
+      // Once the response has been converted
+    }).then((data) => {
+      // data is equal to the result of the return statement above
+      toReturn = data;
+    });
+  // After all of the above have finished, return the toReturn project array
+  return toReturn;
+}
+
 // Export all functions
 module.exports = {
   projects: {
@@ -265,5 +305,9 @@ module.exports = {
   project: {
     metadata: getProjectMetadata,
     comments: getProjectComments
+  },
+  user: {
+    metadata: getUserPage,
+    comments: getUserComments
   }
 }
