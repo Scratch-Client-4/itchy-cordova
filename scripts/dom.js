@@ -245,24 +245,40 @@ let renderComments = (comments) => {
   for (let i = 0; i < comments.length; i++) {
     // define a parent div
     let div = document.createElement('div');
+    // define a div for the author name and content
+    let rightDiv = document.createElement("div");
+    // define the author name
+    let authorName = document.createElement('p');
     // define the comment content
     let content = document.createElement('p');
     // define the image for the profile picture
     let img = document.createElement('img');
     // define the ripple element for animations
     let ripple = document.createElement('mat-ripple');
-    img.src = comments[i].author.image;
+
+    div.classList.add('comments__comment');
+    div.id = "comment-" + comments[i].id;
+
+    rightDiv.classList.add("comments__right");
+
+    authorName.classList.add("comments__author");
+    authorName.innerHTML = comments[i].author.username;
+
     content.classList.add('comments__content');
+    content.innerHTML = comments[i].content;
+
+    img.src = comments[i].author.image;
     img.classList.add('comments__pfp');
     img.addEventListener('click', function() {
       window.location.replace('user.html?u=' + comments[i].author.username);
     });
-    div.classList.add('comments__comment');
-    content.innerHTML = comments[i].content;
-    div.id = "comment-" + comments[i].id;
+
     div.appendChild(img);
-    div.appendChild(content);
+    div.appendChild(rightDiv);
+    rightDiv.appendChild(authorName);
+    rightDiv.appendChild(content);
     div.appendChild(ripple);
+
     document.getElementById('commentSection').appendChild(div);
     div.addEventListener('click', function() {
       window.location.replace('user.html?u=' + comments[i].author.username);
