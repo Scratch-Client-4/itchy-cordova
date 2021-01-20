@@ -30,7 +30,7 @@ document.addEventListener('deviceready', function() {
   api.project.metadata(projectId).then((data) => {
     let projectTitle = data.title.length > 40 ? data.title.substring(0, 40) + '...' : data.title;
     document.getElementById('projectName').innerText = projectTitle;
-    document.getElementById('turboRender').innerHTML = '<iframe id ="turbowarp" src="https://experiments.turbowarp.org/transparent-embeds/embed.html#' + projectId + '?hqpen" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>';
+    document.getElementById('turboRender').innerHTML = '<iframe id ="turbowarp" src="https://turbowarp.org/embed.html?hqpen#' + projectId + "" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>';
     document.querySelector('.author__pfp').src = 'https://cdn2.scratch.mit.edu/get_image/user/' + data.userId + '_60x60.png';
     document.querySelector('.author__pfp').addEventListener('click', function() {
       window.location.replace('user.html?u=' + data.username);
